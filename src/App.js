@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import "./style.css";
+import "./components/toggle.css";
 import axios from "axios";
+import Signup from "./components/Signup.js";
 require("dotenv").config();
 
 function App() {
@@ -27,7 +29,10 @@ function App() {
       {loading ? (
         <header className="App-header">로딩중...</header>
       ) : (
-        <header className="App-header">{hello}</header>
+        <div>
+          <header className="App-header">{hello}</header>
+          <Signup />
+        </div>
       )}
     </div>
   );
