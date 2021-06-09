@@ -52,7 +52,6 @@ function Signup() {
           <div></div>
         )}
       </div>
-      <duv><</duv>
     </div>
   );
 }

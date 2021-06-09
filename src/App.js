@@ -1,21 +1,26 @@
 import React, { useState, useEffect } from "react";
-import Signup from "./component/Signup.js";
 import "./Style.css";
-import Nav from "./component/Nav";
-import Login from "./pages/Login";
+import Router from "./component/Router";
 import axios from "axios";
 require("dotenv").config();
 
 function App() {
+  const [isLoading, setLoading] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // axios로 데이터를 정상적으로 받아왔다. ->
+  });
+
   return (
-    <div>
-      <div className="App">
-        <Nav />
-        <Login />
-      </div>
-      <div>
-        <Signup />
-      </div>
+    <div className="App">
+      {isLoading ? (
+        <h1 className="loader">로딩중...</h1>
+      ) : (
+        <>
+          <Router isLoggedIn={isLoggedIn} />
+        </>
+      )}
     </div>
   );
 }
