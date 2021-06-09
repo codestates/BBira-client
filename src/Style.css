@@ -115,7 +115,7 @@ input.err {
   border-color: var(--redColor);
 }
 
-/* Login */
+/* Signin */
 .login.container {
   margin-top: 189px;
   display: flex;
@@ -139,3 +139,5 @@ input.err {
 .inputGuoup {
   margin-right: 151px;
 }
+
+/* Signin */

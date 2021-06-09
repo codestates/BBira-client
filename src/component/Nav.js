@@ -21,7 +21,7 @@ function Nav({ isLoggedIn }) {
             isLoggedIn ? (
               <>{/* 마이페이지, 로그아웃 버튼 */}</>
             ) : (
-              <Link to="/login">
+              <Link to="/signin">
                 <button className="mediumBtn reverse">Get start</button>
               </Link>
             )

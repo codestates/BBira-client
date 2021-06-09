@@ -1,7 +1,13 @@
+<<<<<<< HEAD:src/pages/Login.js
 import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
+=======
+import React, { useState, useEffect, useMemo } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+>>>>>>> 140cfb4cfc2269809e358cf8e4b03c22877bdae2:src/pages/Signin.js
 
-function Login({ isLogin }) {
+function Signin({ isLogin }) {
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -74,10 +80,12 @@ function Login({ isLogin }) {
         <button className="mediumBtn singIn" onClick={loginRequestHandler}>
           Sign in
         </button>
-        <button className="mediumBtn reverse singUp">Sign up</button>
+        <Link to="/signup">
+          <button className="mediumBtn reverse singUp">Sign up</button>
+        </Link>
       </form>
     </div>
   );
 }
 
-export default Login;
+export default Signin;

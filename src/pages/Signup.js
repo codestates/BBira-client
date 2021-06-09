@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./component/toggle.css";
+import "./toggle.css";
 
 function Signup() {
   const [Owner, setOwner] = useState(false);
