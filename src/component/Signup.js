@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import "./component/toggle.css";
 
-export default function Signup() {
+function Signup() {
   const [Owner, setOwner] = useState(false);
   function isOwner(e) {
     if (Owner) {
@@ -10,7 +11,7 @@ export default function Signup() {
     }
   }
   return (
-    <div className="signup">
+    <div className="">
       <div>
         <img
           src="https://cdn.discordapp.com/attachments/851263973742739471/852072037240406036/BBira.png"
@@ -31,7 +32,7 @@ export default function Signup() {
         <div>
           I`m The Owner
           <label className="switch">
-            <input type="checkbox" onClick={isOwner} />
+            <input className="toggleBtn" type="checkbox" onClick={isOwner} />
             <span className="slider round"></span>
           </label>
         </div>
@@ -51,6 +52,9 @@ export default function Signup() {
           <div></div>
         )}
       </div>
+      <duv><</duv>
     </div>
   );
 }
+
+export default Signup;

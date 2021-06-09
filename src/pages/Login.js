@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 function Login() {
   return (
@@ -7,12 +7,12 @@ function Login() {
 
       <form className="loginForm">
         <div className="inputGuoup">
-          <label for="email">email</label>
+          <label htmlFor="email">email</label>
           <input name="email" required></input>
         </div>
 
         <div className="inputGuoup">
-          <label for="password">password</label>
+          <label htmlFor="password">password</label>
           <input name="password" required></input>
         </div>
 
