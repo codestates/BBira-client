@@ -1,7 +1,8 @@
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Nav from './Nav';
 import Home from '../pages/Home.js';
-import Login from '../pages/Login.js';
+import Signin from '../pages/Signin.js';
+import Signup from '../pages/Signup.js';
 
 function BBiraRoute({ isLoggedIn }) {
   return (
@@ -11,8 +12,11 @@ function BBiraRoute({ isLoggedIn }) {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route exact path="/login">
-          <Login />
+        <Route exact path="/signin">
+          <Signin />
+        </Route>
+        <Route exact path="/signup">
+          <Signup />
         </Route>
       </Switch>
     </Router>

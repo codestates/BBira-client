@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-function Login({ isLogin }) {
+function Signin({ isLogin }) {
   const [inputs, setInputs] = useState({
     email: '',
     password: '',
@@ -74,10 +75,12 @@ function Login({ isLogin }) {
         <button className="mediumBtn singIn" onClick={loginRequestHandler}>
           Sign in
         </button>
-        <button className="mediumBtn reverse singUp">Sign up</button>
+        <Link to="/signup">
+          <button className="mediumBtn reverse singUp">Sign up</button>
+        </Link>
       </form>
     </div>
   );
 }
 
-export default Login;
+export default Signin;
