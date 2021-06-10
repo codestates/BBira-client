@@ -52,7 +52,7 @@ function Signin({ isLogin }) {
       <h1>로그인</h1>
 
       <form className="loginForm">
-        <div className="inputGuoup">
+        <div className="inputGroup">
           <label htmlFor="email">email</label>
           <input
             name="email"
@@ -62,7 +62,7 @@ function Signin({ isLogin }) {
           ></input>
         </div>
 
-        <div className="inputGuoup">
+        <div className="inputGroup">
           <label htmlFor="password">password</label>
           <input
             name="password"
@@ -72,11 +72,11 @@ function Signin({ isLogin }) {
           ></input>
         </div>
 
-        <button className="mediumBtn singIn" onClick={loginRequestHandler}>
+        <button className="mediumBtn signIn" onClick={loginRequestHandler}>
           Sign in
         </button>
         <Link to="/signup">
-          <button className="mediumBtn reverse singUp">Sign up</button>
+          <button className="mediumBtn reverse signUp">Sign up</button>
         </Link>
       </form>
     </div>

@@ -10,7 +10,7 @@
   --yellowColor: #ffd75f;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Quicksand:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Quicksand:wght@300&display=swap");
 
 /*
 font-family: 'Noto Sans KR', sans-serif;
@@ -30,7 +30,7 @@ font-family: 'Quicksand', sans-serif;
   align-items: center;
   width: 100vw;
   height: 100vh;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   color: var(--blackColor);
 }
 
@@ -61,7 +61,7 @@ button.reverse {
 }
 
 h1 {
-  font-family: 'Quicksand', 'Noto Sans KR', sans-serif;
+  font-family: "Quicksand", "Noto Sans KR", sans-serif;
   font-size: 64px;
   font-weight: 300;
 }
@@ -94,7 +94,7 @@ input {
 
 /* NAV */
 .nav {
-  position: absolute;
+  position: fixed;
   top: 0px;
   width: 100vw;
   display: flex;
@@ -124,20 +124,34 @@ input.err {
   align-items: center;
 }
 
-.singIn {
+.signup.container {
+  margin-top: 189px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signIn {
   margin-bottom: 15px;
 }
-.singIn,
-.singUp {
+.signIn,
+.signUp {
   width: 294px;
 }
 
-.singIn {
+.signIn {
   background-color: var(--greenColor);
 }
 
-.inputGuoup {
+.inputGroup {
   margin-right: 151px;
 }
 
 /* Signin */
+
+/* Signup */
+.signup {
+  width: 294px;
+  height: 34px;
+}
