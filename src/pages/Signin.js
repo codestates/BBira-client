@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState, useEffect, useMemo } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Signin({ isLogin }) {
   const [inputs, setInputs] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
   const inputHandler = (e) => {
-    e.target.classList.remove('err');
+    e.target.classList.remove("err");
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value,
@@ -17,10 +17,10 @@ function Signin({ isLogin }) {
   const loginRequestHandler = async (e) => {
     if (!inputs.email || !inputs.password) {
       if (!inputs.email) {
-        e.target.form[0].classList.add('err');
+        e.target.form[0].classList.add("err");
       }
       if (!inputs.password) {
-        e.target.form[1].classList.add('err');
+        e.target.form[1].classList.add("err");
       }
       return;
     }
@@ -35,14 +35,14 @@ function Signin({ isLogin }) {
           password: inputs.password,
         },
         {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           withCredentials: true,
         }
       )
       .then((response) => {
         console.log(response);
         // 로그인 핸들러
-        isLogin(true);
+        isLogin = true;
       })
       .catch((err) => console.log(err));
   };
@@ -51,7 +51,7 @@ function Signin({ isLogin }) {
       <h1>로그인</h1>
 
       <form>
-        <div className="inputGuoup">
+        <div className="inputGroup">
           <label htmlFor="email">email</label>
           <input
             name="email"

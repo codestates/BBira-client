@@ -10,7 +10,7 @@
   --yellowColor: #ffd75f;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Quicksand:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Quicksand:wght@300&display=swap");
 
 /*
 font-family: 'Noto Sans KR', sans-serif;
@@ -30,7 +30,7 @@ font-family: 'Quicksand', sans-serif;
   align-items: center;
   width: 100vw;
   height: 100vh;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   color: var(--blackColor);
 }
 
@@ -89,7 +89,7 @@ button.reverse {
 }
 
 h1 {
-  font-family: 'Quicksand', 'Noto Sans KR', sans-serif;
+  font-family: "Quicksand", "Noto Sans KR", sans-serif;
   font-size: 64px;
   font-weight: 300;
   line-height: 66px;
@@ -168,7 +168,7 @@ input.err {
   background-color: var(--greenColor);
 }
 
-.inputGuoup {
+.inputGroup {
   margin-right: 151px;
 }
 
@@ -204,4 +204,40 @@ input.err {
   margin-top: 34px;
   text-align: end;
   grid-column: span 2;
+}
+
+/* Itemlist */
+.itemlist.container {
+  margin-top: 189px;
+}
+
+/* Loading */
+.loadimg {
+  margin-top: 100px;
+}
+.bouncybox {
+  height: 100px;
+  width: 40px;
+  margin-left: 0px;
+}
+.bouncy {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background: var(--purpleColor);
+  animation: bouncy 2s infinite ease-in-out;
+}
+
+@keyframes bouncy {
+  40% {
+    height: 40px;
+  }
+  50% {
+    transform: translate(0, 65px);
+    height: 34px;
+    border-radius: 20px;
+  }
+  65% {
+    height: 40px;
+  }
 }
