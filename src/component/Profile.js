@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-function Profile({ userinfo, setEditModeHandler }) {
+function Profile({ userinfo, setEditModeHandler, dropUserHandler }) {
   const { name, email, storename, address, phone } = userinfo;
 
   return (
@@ -12,7 +13,9 @@ function Profile({ userinfo, setEditModeHandler }) {
         >
           프로필 편집
         </button>
-        <button className="mediumBtn reverse">상품 관리</button>
+        <Link to="/mystore">
+          <button className="mediumBtn reverse">상품 관리</button>
+        </Link>
       </div>
       <h1>마이페이지</h1>
       <div className="grid userInfo">
@@ -31,7 +34,9 @@ function Profile({ userinfo, setEditModeHandler }) {
         <div className="tag">phone</div>
         <div className="data">{phone}</div>
         <div>
-          <button className="smallBtn red dropOutBtn">Drop out</button>
+          <button className="smallBtn red dropOutBtn" onClick={dropUserHandler}>
+            Drop out
+          </button>
         </div>
       </div>
     </div>

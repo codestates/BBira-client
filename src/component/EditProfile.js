@@ -5,6 +5,7 @@ function EditProfile({ userinfo, setEditModeHandler }) {
   const { name, email, storename, address, phone } = userinfo;
 
   const [inputUserinfo, setUserinfo] = useState({
+    email,
     name,
     storename,
     address,
@@ -18,11 +19,12 @@ function EditProfile({ userinfo, setEditModeHandler }) {
   };
 
   const editProfileHandler = () => {
-    const { name, storename, address, phone } = inputUserinfo;
+    const { email, name, storename, address, phone } = inputUserinfo;
     axios
       .post(
         `${process.env.REACT_APP_API_URL}/fixuserinfo`,
         {
+          email,
           nickname: name,
           storename,
           address,

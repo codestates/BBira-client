@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import Item from "../component/Item";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import Item from '../component/Item';
+import axios from 'axios';
 
 function Itemlist() {
   const [itemData, setItemData] = useState({
@@ -18,11 +18,13 @@ function Itemlist() {
     <div className="itemlist container center">
       <h1>상품 리스트</h1>
       {itemData.isLoad ? (
-        <div className="loadimg">
-          <div className="bouncybox">
-            <div className="bouncy"></div>
+        <>
+          <div className="loadimg">
+            <div className="bouncybox">
+              <div className="bouncy"></div>
+            </div>
           </div>
-        </div>
+        </>
       ) : (
         <div className="grid itemlist">
           {itemData.data.map((el) => {

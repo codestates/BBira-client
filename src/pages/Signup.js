@@ -183,7 +183,7 @@ function Signup(props) {
         ) : (
           <div></div>
         )}
-        <button className="signup" onClick={signupRequestHandler}>
+        <button className="mediumBtn submitBtn" onClick={signupRequestHandler}>
           Sign up
         </button>
       </form>

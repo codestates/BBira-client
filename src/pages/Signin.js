@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
-const history = useHistory();
 
 function Signin({ setLoggedIn }) {
+  const history = useHistory();
   const [inputs, setInputs] = useState({
     email: '',
     password: '',
