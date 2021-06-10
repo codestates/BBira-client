@@ -104,7 +104,7 @@ function Signup() {
   };
 
   return (
-    <div className="login container">
+    <div className="signup container">
       <h1>회원 가입</h1>
 
       <div className="inputGroup">
