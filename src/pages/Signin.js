@@ -45,7 +45,9 @@ function Signin({ setLoggedIn, history }) {
         console.log(response);
         // 로그인 핸들러
         setLoggedIn(true);
-        history.push('/');
+        history.push({
+          pathname: '/',
+        });
       })
       .catch((err) => console.log(err));
   };
