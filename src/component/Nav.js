@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-function Nav({ isLoggedIn }) {
+function Nav({ isLoggedIn, setLoggedIn }) {
+  const logOutHandler = () => {
+    // axios.get(`${process.env.REACT_APP_API_URL}/logout`).then(() => {
+    setLoggedIn(false);
+    // });
+  };
+
   return (
     <div className="nav">
       <div className="container">
@@ -13,19 +20,22 @@ function Nav({ isLoggedIn }) {
         </Link>
 
         <div className="dynamicLink">
-          {
-            /* 상태에 따라 변하는 오른쪽 버튼들
-            1. 로그인 상태가 아닐 때 - 겟 스타트
-            2. 로그인일 중 일때 - 마이페이지, 로그아웃
-        */
-            isLoggedIn ? (
-              <>{/* 마이페이지, 로그아웃 버튼 */}</>
-            ) : (
-              <Link to="/signin">
-                <button className="mediumBtn reverse">Get start</button>
+          {isLoggedIn ? (
+            <>
+              <Link to="/mypage">
+                <button className="mediumBtn reverse marginR">My page</button>
               </Link>
-            )
-          }
+              <Link to="/">
+                <button className="mediumBtn reverse" onClick={logOutHandler}>
+                  Sign out
+                </button>
+              </Link>
+            </>
+          ) : (
+            <Link to="/signin">
+              <button className="mediumBtn reverse">Get start</button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

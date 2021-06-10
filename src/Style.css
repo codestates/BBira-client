@@ -38,6 +38,13 @@ font-family: 'Quicksand', sans-serif;
   width: 900px;
 }
 
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 button {
   font-family: inherit;
   font-size: 18px;
@@ -47,11 +54,28 @@ button {
   border: none;
   border-radius: 50px;
   cursor: pointer;
+  line-height: 25px;
 }
+
+/* button:hover { */
+/* box-shadow: ; */
+/* } */
 
 .mediumBtn {
   width: 132px;
   height: 35px;
+}
+
+.smallBtn {
+  width: 98px;
+  height: 30px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+button.red {
+  background-color: var(--redColor);
 }
 
 button.reverse {
@@ -60,10 +84,15 @@ button.reverse {
   color: var(--purpleColor);
 }
 
+.marginR {
+  margin-right: 10px;
+}
+
 h1 {
   font-family: 'Quicksand', 'Noto Sans KR', sans-serif;
   font-size: 64px;
   font-weight: 300;
+  line-height: 66px;
 }
 
 form {
@@ -78,23 +107,33 @@ label {
   margin-right: 10px;
   display: inline-block;
   width: 142px;
+  text-align: center;
+  font-size: 14px;
   font-weight: 300;
+  line-height: 19px;
 }
 
 input {
   margin-bottom: 15px;
   width: 294px;
   height: 35px;
-  padding: 5px 10px;
+  padding: 5px 15px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 300;
   background-color: var(--whiteColor);
   border: var(--lightGrayColor) solid 1px;
   outline: none;
   border-radius: 50px;
 }
 
+input.err {
+  border-color: var(--redColor);
+}
+
 /* NAV */
 .nav {
-  position: absolute;
+  position: fixed;
   top: 0px;
   width: 100vw;
   display: flex;
@@ -111,28 +150,21 @@ input {
   align-items: center;
 }
 
-input.err {
-  border-color: var(--redColor);
-}
-
 /* Signin */
-.login.container {
+.signIn.container {
   margin-top: 189px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
-.singIn {
+.signInBtn {
   margin-bottom: 15px;
 }
-.singIn,
-.singUp {
+
+.signInBtn,
+.signUpBtn {
   width: 294px;
 }
 
-.singIn {
+.signInBtn {
   background-color: var(--greenColor);
 }
 
@@ -140,4 +172,36 @@ input.err {
   margin-right: 151px;
 }
 
-/* Signin */
+/* Signup */
+
+/* Mypage */
+.mypage.container {
+  margin-top: 55px;
+}
+.mypage h1 {
+  margin-top: 45px;
+}
+
+.grid {
+  display: grid;
+  grid-template-rows: repeat(5, 66px);
+  grid-template-columns: 142px 294px;
+  column-gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 73px;
+}
+
+.grid .tag {
+  font-weight: 600;
+}
+
+.grid .data {
+  font-weight: 300;
+}
+
+.grid div:last-child {
+  margin-top: 34px;
+  text-align: end;
+  grid-column: span 2;
+}

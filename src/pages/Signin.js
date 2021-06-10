@@ -1,27 +1,26 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import React, { useState, useEffect, useMemo } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function Signin({ isLogin }) {
   const [inputs, setInputs] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   const inputHandler = (e) => {
-    e.target.classList.remove("err");
+    e.target.classList.remove('err');
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value,
     });
-    console.log(inputs);
   };
   const loginRequestHandler = async (e) => {
     if (!inputs.email || !inputs.password) {
       if (!inputs.email) {
-        e.target.form[0].classList.add("err");
+        e.target.form[0].classList.add('err');
       }
       if (!inputs.password) {
-        e.target.form[1].classList.add("err");
+        e.target.form[1].classList.add('err');
       }
       return;
     }
@@ -36,7 +35,7 @@ function Signin({ isLogin }) {
           password: inputs.password,
         },
         {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           withCredentials: true,
         }
       )
@@ -48,10 +47,10 @@ function Signin({ isLogin }) {
       .catch((err) => console.log(err));
   };
   return (
-    <div className="login container">
+    <div className="signIn container center">
       <h1>로그인</h1>
 
-      <form className="loginForm">
+      <form>
         <div className="inputGuoup">
           <label htmlFor="email">email</label>
           <input
@@ -72,11 +71,11 @@ function Signin({ isLogin }) {
           ></input>
         </div>
 
-        <button className="mediumBtn singIn" onClick={loginRequestHandler}>
+        <button className="mediumBtn signInBtn" onClick={loginRequestHandler}>
           Sign in
         </button>
         <Link to="/signup">
-          <button className="mediumBtn reverse singUp">Sign up</button>
+          <button className="mediumBtn reverse signUpBtn">Sign up</button>
         </Link>
       </form>
     </div>

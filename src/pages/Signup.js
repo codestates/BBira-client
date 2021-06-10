@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "./toggle.css";
+import React, { useState } from 'react';
+import './toggle.css';
 
 function Signup() {
   const [Owner, setOwner] = useState(false);
@@ -11,15 +11,9 @@ function Signup() {
     }
   }
   return (
-    <div className="">
-      <div>
-        <img
-          src="https://cdn.discordapp.com/attachments/851263973742739471/852072037240406036/BBira.png"
-          alt="BBira"
-        />
-      </div>
-      <div>
-        <div className="title">회원 가입</div>
+    <div className="signUp container center">
+      <h1>회원 가입</h1>
+      <form className="">
         <div>
           Email : <input id="email" required></input>
         </div>
@@ -51,7 +45,7 @@ function Signup() {
         ) : (
           <div></div>
         )}
-      </div>
+      </form>
     </div>
   );
 }
