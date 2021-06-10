@@ -131,6 +131,24 @@ input.err {
   border-color: var(--redColor);
 }
 
+textarea {
+  margin-bottom: 15px;
+  width: 294px;
+  height: 100px;
+  padding: 5px 15px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 300;
+  background-color: var(--whiteColor);
+  border: var(--lightGrayColor) solid 1px;
+  outline: none;
+  border-radius: 50px;
+}
+
+textarea.err {
+  border-color: var(--redColor);
+}
+
 /* NAV */
 .nav {
   position: fixed;
@@ -160,7 +178,8 @@ input.err {
 }
 
 .signInBtn,
-.signUpBtn {
+.signUpBtn,
+.createBtn {
   width: 294px;
 }
 
@@ -210,6 +229,24 @@ input.err {
 .itemlist.container {
   margin-top: 189px;
 }
+
+/* Create */
+.create.container {
+  margin-top: 55px;
+}
+.itemdesc {
+  resize: none;
+}
+
+.grid.storeManagement {
+  grid-template-rows: 61px 61px 347px;
+  grid-template-columns: 142px 446px;
+}
+
+/* .whatthe {
+  line-height: 347px;
+  vertical-align: baseline;
+} */
 
 /* Loading */
 .loadimg {

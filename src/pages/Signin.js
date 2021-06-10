@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 function Signin({ isLogin }) {
+  const history = useHistory();
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -43,6 +45,7 @@ function Signin({ isLogin }) {
         console.log(response);
         // 로그인 핸들러
         isLogin = true;
+        history.push({ pathname: "/" });
       })
       .catch((err) => console.log(err));
   };
