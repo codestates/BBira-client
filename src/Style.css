@@ -215,3 +215,39 @@ input.err {
   text-align: end;
   grid-column: span 2;
 }
+
+/* Itemlist */
+.itemlist.container {
+  margin-top: 189px;
+}
+
+/* Loading */
+.loadimg {
+  margin-top: 100px;
+}
+.bouncybox {
+  height: 100px;
+  width: 40px;
+  margin-left: 0px;
+}
+.bouncy {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background: var(--purpleColor);
+  animation: bouncy 2s infinite ease-in-out;
+}
+
+@keyframes bouncy {
+  40% {
+    height: 40px;
+  }
+  50% {
+    transform: translate(0, 65px);
+    height: 34px;
+    border-radius: 20px;
+  }
+  65% {
+    height: 40px;
+  }
+}

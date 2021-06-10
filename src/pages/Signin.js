@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useHistory } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
-const history = useHistory;
+const history = useHistory();
 
 function Signin({ setLoggedIn }) {
   const [inputs, setInputs] = useState({
