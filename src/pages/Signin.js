@@ -61,7 +61,7 @@ function Signin({ isLogin }) {
           ></input>
         </div>
 
-        <div className="inputGuoup">
+        <div className="inputGroup">
           <label htmlFor="password">password</label>
           <input
             name="password"
