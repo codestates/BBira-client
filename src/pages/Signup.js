@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import axios from "axios";
-import "./toggle.css";
+import React, { useState } from 'react';
+import axios from 'axios';
+import './toggle.css';
 
 function Signup() {
   const [Owner, setOwner] = useState(false);
   const [inputs, setInputs] = useState({
-    email: "",
-    password: "",
-    nickname: "",
-    storename: "",
-    phone: "",
-    address: "",
+    email: '',
+    password: '',
+    nickname: '',
+    storename: '',
+    phone: '',
+    address: '',
   });
 
   function isOwner(e) {
@@ -22,7 +22,7 @@ function Signup() {
   }
 
   const inputHandler = (e) => {
-    e.target.classList.remove("err");
+    e.target.classList.remove('err');
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value,
@@ -34,13 +34,13 @@ function Signup() {
     //기본 회원가입시
     if (Owner === false) {
       if (!inputs.email) {
-        e.target.form[0].classList.add("err");
+        e.target.form[0].classList.add('err');
       }
       if (!inputs.password) {
-        e.target.form[1].classList.add("err");
+        e.target.form[1].classList.add('err');
       }
       if (!inputs.nickname) {
-        e.target.form[2].classList.add("err");
+        e.target.form[2].classList.add('err');
       }
 
       await axios
@@ -52,7 +52,7 @@ function Signup() {
             nickname: inputs.password,
           },
           {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             withCredentials: true,
           }
         )
@@ -62,22 +62,22 @@ function Signup() {
         .catch((err) => console.log(err));
     } /* 상점 회원가입시 */ else {
       if (!inputs.email) {
-        e.target.form[0].classList.add("err");
+        e.target.form[0].classList.add('err');
       }
       if (!inputs.password) {
-        e.target.form[1].classList.add("err");
+        e.target.form[1].classList.add('err');
       }
       if (!inputs.nickname) {
-        e.target.form[2].classList.add("err");
+        e.target.form[2].classList.add('err');
       }
       if (!inputs.storename) {
-        e.target.form[3].classList.add("err");
+        e.target.form[3].classList.add('err');
       }
       if (!inputs.phone) {
-        e.target.form[4].classList.add("err");
+        e.target.form[4].classList.add('err');
       }
       if (!inputs.address) {
-        e.target.form[5].classList.add("err");
+        e.target.form[5].classList.add('err');
       }
 
       await axios
@@ -92,7 +92,7 @@ function Signup() {
             address: inputs.address,
           },
           {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             withCredentials: true,
           }
         )
