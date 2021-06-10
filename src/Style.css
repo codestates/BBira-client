@@ -131,6 +131,28 @@ input.err {
   border-color: var(--redColor);
 }
 
+.submitBtn {
+  background-color: var(--greenColor);
+}
+
+.submitBtn:hover {
+  box-shadow: rgba(111, 207, 151, 0.16) 0px 3px 6px,
+    rgba(111, 207, 151, 0.23) 0px 3px 6px;
+}
+
+.submitBtn:active {
+  box-shadow: none;
+}
+
+.submitBtn,
+.signUpBtn {
+  width: 294px;
+}
+
+.inputGroup {
+  margin-right: 151px;
+}
+
 /* NAV */
 .nav {
   position: fixed;
@@ -155,21 +177,8 @@ input.err {
   margin-top: 189px;
 }
 
-.signInBtn {
-  margin-bottom: 15px;
-}
-
-.signInBtn,
 .signUpBtn {
-  width: 294px;
-}
-
-.signInBtn {
-  background-color: var(--greenColor);
-}
-
-.inputGuoup {
-  margin-right: 151px;
+  margin-top: 15px;
 }
 
 /* Signup */
@@ -178,6 +187,7 @@ input.err {
 .mypage.container {
   margin-top: 55px;
 }
+
 .mypage h1 {
   margin-top: 45px;
 }

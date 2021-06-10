@@ -2,6 +2,7 @@ import React from 'react';
 
 function Profile({ userinfo, setEditModeHandler }) {
   const { name, email, storename, address, phone } = userinfo;
+
   return (
     <div className="mypage container center">
       <div className="subNav">

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './toggle.css';
 
-function Signup() {
+function Signup(props) {
   const [Owner, setOwner] = useState(false);
   const [inputs, setInputs] = useState({
     email: '',
@@ -98,6 +98,7 @@ function Signup() {
         )
         .then((response) => {
           console.log(response);
+          props.history.push('/');
         })
         .catch((err) => console.log(err));
     }

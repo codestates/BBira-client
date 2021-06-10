@@ -14,7 +14,7 @@ function BBiraRoute({ isLoggedIn, setLoggedIn }) {
           <Home />
         </Route>
         <Route exact path="/signin">
-          <Signin />
+          <Signin setLoggedIn={setLoggedIn} />
         </Route>
         <Route exact path="/signup">
           <Signup />

@@ -1,31 +1,92 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 
-function EditProfile({ userinfo }) {
-  const { name, email, storeName, address, phone } = userinfo;
+function EditProfile({ userinfo, setEditModeHandler }) {
+  const { name, email, storename, address, phone } = userinfo;
+
+  const [inputUserinfo, setUserinfo] = useState({
+    name,
+    storename,
+    address,
+    phone,
+  });
+
+  const setUserinfoHandler = (e) => {
+    setUserinfo({
+      ...inputUserinfo,
+    });
+  };
+
+  const editProfileHandler = () => {
+    const { name, storename, address, phone } = inputUserinfo;
+    axios
+      .post(
+        `${process.env.REACT_APP_API_URL}/fixuserinfo`,
+        {
+          nickname: name,
+          storename,
+          address,
+          phone,
+        },
+        {
+          'Content-Type': 'application/json',
+          withCredentials: true,
+        }
+      )
+      .then(() => {});
+  };
+
   return (
     <div className="mypage container center">
       <div className="subNav">
-        <button className="mediumBtn reverse marginR">프로필 편집</button>
-        <button className="mediumBtn reverse">상품 관리</button>
+        <button className="mediumBtn reverse" onClick={setEditModeHandler}>
+          마이페이지
+        </button>
       </div>
-      <h1>마이페이지</h1>
+      <h1>프로필 편집</h1>
       <div className="grid userInfo">
         <div className="tag">name</div>
-        <input className="data">{name}</input>
+        <input
+          className="data"
+          name="name"
+          value={name}
+          required
+          onChange={setUserinfoHandler}
+        />
 
         <div className="tag">email</div>
         <div className="data">{email}</div>
 
         <div className="tag">store name</div>
-        <div className="data">{storeName}</div>
+        <input
+          className="data"
+          name="storename"
+          value={storename}
+          required
+          onChange={setUserinfoHandler}
+        />
 
         <div className="tag">address</div>
-        <div className="data">{address}</div>
+        <input
+          className="data"
+          name="address"
+          value={address}
+          required
+          onChange={setUserinfoHandler}
+        />
 
         <div className="tag">phone</div>
-        <div className="data">{phone}</div>
+        <input
+          className="data"
+          name="phone"
+          value={phone}
+          required
+          onChange={setUserinfoHandler}
+        />
         <div>
-          <button className="smallBtn red dropOutBtn">Drop out</button>
+          <button className="mediumBtn submitBtn" onClick={editProfileHandler}>
+            Edit Done
+          </button>
         </div>
       </div>
     </div>

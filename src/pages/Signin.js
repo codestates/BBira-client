@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useHistory } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-function Signin({ isLogin }) {
+const history = useHistory;
+
+function Signin({ setLoggedIn, history }) {
   const [inputs, setInputs] = useState({
     email: '',
     password: '',
@@ -42,7 +44,8 @@ function Signin({ isLogin }) {
       .then((response) => {
         console.log(response);
         // 로그인 핸들러
-        isLogin(true);
+        setLoggedIn(true);
+        history.push('/');
       })
       .catch((err) => console.log(err));
   };
@@ -51,7 +54,7 @@ function Signin({ isLogin }) {
       <h1>로그인</h1>
 
       <form>
-        <div className="inputGuoup">
+        <div className="inputGroup">
           <label htmlFor="email">email</label>
           <input
             name="email"
@@ -71,7 +74,7 @@ function Signin({ isLogin }) {
           ></input>
         </div>
 
-        <button className="mediumBtn signInBtn" onClick={loginRequestHandler}>
+        <button className="mediumBtn submitBtn" onClick={loginRequestHandler}>
           Sign in
         </button>
         <Link to="/signup">

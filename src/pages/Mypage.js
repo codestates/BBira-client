@@ -14,7 +14,11 @@ function Mypage() {
   });
 
   const setEditModeHandler = () => {
-    setEditMode(true);
+    if (isEditMode) {
+      setEditMode(false);
+    } else {
+      setEditMode(true);
+    }
   };
 
   useEffect(() => {
@@ -38,7 +42,10 @@ function Mypage() {
   return (
     <div className="mypage container center">
       {isEditMode ? (
-        <EditProfile userinfo={userinfo} />
+        <EditProfile
+          userinfo={userinfo}
+          setEditModeHandler={setEditModeHandler}
+        />
       ) : (
         <Profile userinfo={userinfo} setEditModeHandler={setEditModeHandler} />
       )}
