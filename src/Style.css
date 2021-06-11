@@ -232,21 +232,31 @@ textarea.err {
 
 /* Create */
 .create.container {
-  margin-top: 55px;
+  margin-top: 189px;
 }
 .itemdesc {
+  height: 300px;
   resize: none;
 }
 
 .grid.storeManagement {
-  grid-template-rows: 61px 61px 347px;
+  grid-template-rows: 61px 61px 347px 100px;
   grid-template-columns: 142px 446px;
 }
 
-/* .whatthe {
-  line-height: 347px;
-  vertical-align: baseline;
-} */
+/* Itemedit */
+.Itemedit.container {
+  margin-top: 189px;
+}
+.itemdesc {
+  height: 300px;
+  resize: none;
+}
+
+.grid.storeManagement {
+  grid-template-rows: 61px 61px 347px 100px;
+  grid-template-columns: 142px 446px;
+}
 
 /* Loading */
 .loadimg {

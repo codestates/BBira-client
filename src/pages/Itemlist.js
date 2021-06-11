@@ -2,11 +2,16 @@ import React, { useEffect, useState } from "react";
 import Item from "../component/Item";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import Edititem from "../component/EditItem.js";
 
 function Itemlist() {
   const [itemData, setItemData] = useState({
-    isLoad: false,
+    isLoad: true,
     data: [],
+  });
+  const [isEdititem, setEdititem] = useState({
+    isEdititem: false,
+    key: -1,
   });
   const history = useHistory();
   useEffect(() => {
@@ -15,6 +20,13 @@ function Itemlist() {
       setItemData({ data: res.data.data, isLoad: false });
     });
   });
+  let A;
+
+  let btnClick = (e) => {
+    console.log(e.target.key);
+    setEdititem({ isEdititem: true, key: e.target.key });
+    A = e.target.key;
+  };
 
   return (
     <div className="itemlist container center">
@@ -29,6 +41,8 @@ function Itemlist() {
             </div>
           </form>
         </div>
+      ) : isEdititem ? (
+        <Edititem data={A} />
       ) : (
         <div className="container center">
           <button
@@ -42,8 +56,8 @@ function Itemlist() {
           <form>
             <h1>상품 리스트</h1>
             <div className="grid itemlist">
-              {itemData.data.map((el) => {
-                <Item data={el} />;
+              {itemData.data.map((el, i) => {
+                <Item key={i} data={el} editClick={btnClick} />;
               })}
             </div>
           </form>

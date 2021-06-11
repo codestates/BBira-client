@@ -9,6 +9,7 @@ function Create() {
     itemdesc: "",
   });
   const history = useHistory();
+
   const inputHandler = (e) => {
     e.target.classList.remove("err");
     setInputs({
@@ -17,6 +18,7 @@ function Create() {
     });
     console.log(inputs);
   };
+
   const CreateRequestHandler = async (e) => {
     if (!inputs.itemname) {
       e.target.form[0].classList.add("err");
@@ -70,24 +72,17 @@ function Create() {
           required
         ></input>
 
-        <label htmlFor="itemdesc" className="whatthe">
-          Describe
-        </label>
-        {/* <input></input> */}
+        <label htmlFor="itemdesc">Describe</label>
         <textarea
           name="itemdesc"
           type="textarea"
           className="itemdesc"
           onChange={inputHandler}
         ></textarea>
-        <div>
-          <button
-            className="mediumBtn createBtn"
-            onClick={CreateRequestHandler}
-          >
-            Create
-          </button>
-        </div>
+        <div></div>
+        <button className="mediumBtn createBtn" onClick={CreateRequestHandler}>
+          Create
+        </button>
       </form>
     </div>
   );
