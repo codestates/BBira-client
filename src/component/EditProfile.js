@@ -1,31 +1,114 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 
-function EditProfile({ userinfo }) {
-  const { name, email, storeName, address, phone } = userinfo;
+function EditProfile({ isLoggedIn, userinfo, setEditModeHandler }) {
+  const { nickname, email, storename, address, phone } = userinfo;
+
+  const [inputUserinfo, setUserinfo] = useState({
+    nickname,
+    storename,
+    address,
+    phone,
+    password: '',
+  });
+
+  const setUserinfoHandler = (e) => {
+    setUserinfo({
+      ...inputUserinfo,
+      [e.target.name]: e.target.value,
+    });
+    console.log(inputUserinfo);
+  };
+
+  const editProfileHandler = () => {
+    const { nickname, storename, address, phone, password } = inputUserinfo;
+    axios
+      .post(
+        `http://ec2-13-209-69-167.ap-northeast-2.compute.amazonaws.com/fixuserinfo`,
+        {
+          nickname,
+          storename,
+          address,
+          phone,
+          password,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            authorization: `Bearer ${isLoggedIn.accessToken}`,
+          },
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        setEditModeHandler(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="mypage container center">
       <div className="subNav">
-        <button className="mediumBtn reverse marginR">프로필 편집</button>
-        <button className="mediumBtn reverse">상품 관리</button>
+        <button className="mediumBtn reverse" onClick={setEditModeHandler}>
+          마이페이지
+        </button>
       </div>
-      <h1>마이페이지</h1>
+      <h1>프로필 편집</h1>
       <div className="grid userInfo">
         <div className="tag">name</div>
-        <input className="data">{name}</input>
+        <input
+          className="data"
+          name="nickname"
+          placeholder={nickname}
+          required
+          onChange={setUserinfoHandler}
+        />
 
         <div className="tag">email</div>
         <div className="data">{email}</div>
 
         <div className="tag">store name</div>
-        <div className="data">{storeName}</div>
+        <input
+          className="data"
+          name="storename"
+          placeholder={storename}
+          required
+          onChange={setUserinfoHandler}
+        />
 
         <div className="tag">address</div>
-        <div className="data">{address}</div>
+        <input
+          className="data"
+          name="address"
+          placeholder={address}
+          required
+          onChange={setUserinfoHandler}
+        />
 
         <div className="tag">phone</div>
-        <div className="data">{phone}</div>
+        <input
+          className="data"
+          name="phone"
+          placeholder={phone}
+          required
+          onChange={setUserinfoHandler}
+        />
+
+        <div className="tag">password</div>
+        <input
+          className="data"
+          type="password"
+          name="password"
+          required
+          onChange={setUserinfoHandler}
+        />
         <div>
-          <button className="smallBtn red dropOutBtn">Drop out</button>
+          <button className="mediumBtn submitBtn" onClick={editProfileHandler}>
+            Edit Done
+          </button>
         </div>
       </div>
     </div>

@@ -1,16 +1,15 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import axios from 'axios';
 
-function Signin({ isLogin }) {
+function Signin({ setLoggedIn }) {
   const history = useHistory();
   const [inputs, setInputs] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   const inputHandler = (e) => {
-    e.target.classList.remove("err");
+    e.target.classList.remove('err');
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value,
@@ -19,10 +18,10 @@ function Signin({ isLogin }) {
   const loginRequestHandler = async (e) => {
     if (!inputs.email || !inputs.password) {
       if (!inputs.email) {
-        e.target.form[0].classList.add("err");
+        e.target.form[0].classList.add('err');
       }
       if (!inputs.password) {
-        e.target.form[1].classList.add("err");
+        e.target.form[1].classList.add('err');
       }
       return;
     }
@@ -37,15 +36,20 @@ function Signin({ isLogin }) {
           password: inputs.password,
         },
         {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           withCredentials: true,
         }
       )
-      .then((response) => {
-        console.log(response);
+      .then((res) => {
         // 로그인 핸들러
-        isLogin = true;
-        history.push({ pathname: "/" });
+        console.log(res.data);
+        setLoggedIn({
+          isLogin: true,
+          accessToken: res.data.data.accessToken,
+        });
+        history.push({
+          pathname: '/',
+        });
       })
       .catch((err) => console.log(err));
   };
@@ -74,7 +78,7 @@ function Signin({ isLogin }) {
           ></input>
         </div>
 
-        <button className="mediumBtn signInBtn" onClick={loginRequestHandler}>
+        <button className="mediumBtn submitBtn" onClick={loginRequestHandler}>
           Sign in
         </button>
         <Link to="/signup">

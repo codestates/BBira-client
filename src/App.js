@@ -5,22 +5,15 @@ import axios from 'axios';
 require('dotenv').config();
 
 function App() {
-  const [isLoading, setLoading] = useState(false);
-  const [isLoggedIn, setLoggedIn] = useState(true);
-
-  useEffect(() => {
-    // axios로 데이터를 정상적으로 받아왔다. ->
+  const [accessToken, setAccessToken] = useState('');
+  const [isLoggedIn, setLoggedIn] = useState({
+    isLogin: false,
+    accessToken: '',
   });
 
   return (
     <div className="App">
-      {isLoading ? (
-        <h1 className="loader">로딩중...</h1>
-      ) : (
-        <>
-          <Router isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
-        </>
-      )}
+      <Router isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
     </div>
   );
 }

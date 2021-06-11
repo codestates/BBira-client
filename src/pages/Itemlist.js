@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Item from "../component/Item";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import Edititem from "../component/EditItem.js";
 
 function Itemlist() {
   const [itemData, setItemData] = useState({
