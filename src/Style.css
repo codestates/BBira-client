@@ -11,7 +11,7 @@
   --yellowColor: #ffd75f;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Quicksand:wght@300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Quicksand:wght@300&display=swap');
 
 /*
 font-family: 'Noto Sans KR', sans-serif;
@@ -31,7 +31,7 @@ font-family: 'Quicksand', sans-serif;
   align-items: center;
   width: 100vw;
   height: 100vh;
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   color: var(--blackColor);
   letter-spacing: 1px;
 }
@@ -88,7 +88,7 @@ button.reverse {
 }
 
 h1 {
-  font-family: "Quicksand", "Noto Sans KR", sans-serif;
+  font-family: 'Quicksand', 'Noto Sans KR', sans-serif;
   font-size: 64px;
   font-weight: 300;
   line-height: 66px;
@@ -172,6 +172,10 @@ textarea.err {
   border-color: var(--redColor);
 }
 
+.subNav {
+  margin-bottom: 47px;
+}
+
 /* Loading */
 .loadimg {
   margin-top: 100px;
@@ -244,24 +248,27 @@ textarea.err {
 }
 
 /* Signup */
+.isOwner {
+  margin-top: 46px;
+  margin-bottom: 27px;
+  font-size: 14px;
+  font-weight: 300;
+}
 
 /* Mypage */
 .mypage.container {
   margin-top: 55px;
 }
 
-.mypage h1 {
-  margin-top: 45px;
-}
-
 .grid {
   display: grid;
-  grid-template-rows: repeat(5, 66px);
+  grid-template-rows: repeat(6, 66px);
   grid-template-columns: 142px 294px;
   column-gap: 10px;
   justify-content: center;
   align-items: center;
   margin-top: 73px;
+  margin-bottom: 50px;
 }
 
 .grid .tag {

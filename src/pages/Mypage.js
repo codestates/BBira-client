@@ -13,6 +13,7 @@ function Mypage({ isLoggedIn, setLoggedIn }) {
     storename: '',
     address: '',
     phone: '',
+    tagname: '',
   });
 
   const setEditModeHandler = () => {
@@ -54,13 +55,15 @@ function Mypage({ isLoggedIn, setLoggedIn }) {
       })
       .then((res) => {
         console.log(res.data.data);
-        const { nickname, email, storename, address, phone } = res.data.data;
+        const { nickname, email, storename, address, phone, tagname } =
+          res.data.data;
         setUserinfo({
           nickname,
           email,
           storename,
           address,
           phone,
+          tagname,
         });
       });
   }, []);
