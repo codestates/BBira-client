@@ -40,10 +40,13 @@ function Signin({ setLoggedIn }) {
           withCredentials: true,
         }
       )
-      .then((response) => {
-        console.log(response);
+      .then((res) => {
         // 로그인 핸들러
-        setLoggedIn(true);
+        console.log(res.data);
+        setLoggedIn({
+          isLogin: true,
+          accessToken: res.data.data.accessToken,
+        });
         history.push({
           pathname: '/',
         });

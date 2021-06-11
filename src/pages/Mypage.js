@@ -4,11 +4,11 @@ import Profile from '../component/Profile';
 import EditProfile from '../component/EditProfile';
 import axios from 'axios';
 
-function Mypage({ setLoggedIn }) {
+function Mypage({ isLoggedIn, setLoggedIn }) {
   const history = useHistory();
   const [isEditMode, setEditMode] = useState(false);
   const [userinfo, setUserinfo] = useState({
-    name: '',
+    nickname: '',
     email: '',
     storename: '',
     address: '',
@@ -24,36 +24,52 @@ function Mypage({ setLoggedIn }) {
   };
 
   const dropUserHandler = () => {
-    axios.get(`${process.env.REACT_APP_API_URL}/dropuser`).then(() => {
-      setLoggedIn(false);
-      history.push({
-        pathname: '/',
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/dropuser`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${isLoggedIn.accessToken}`,
+        },
+        withCredentials: true,
+      })
+      .then(() => {
+        setLoggedIn({
+          isLogin: false,
+          accessToken: '',
+        });
+        history.push({
+          pathname: '/',
+        });
       });
-    });
   };
 
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/userinfo`, {
-        'Content-Type': 'application/json',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${isLoggedIn.accessToken}`,
+        },
         withCredentials: true,
       })
-      .then((response) => {
-        const { name, email, storename, address, phone } = response.data;
+      .then((res) => {
+        console.log(res.data.data);
+        const { nickname, email, storename, address, phone } = res.data.data;
         setUserinfo({
-          name,
+          nickname,
           email,
           storename,
           address,
           phone,
         });
       });
-  });
+  }, []);
 
   return (
     <div className="mypage container center">
       {isEditMode ? (
         <EditProfile
+          isLoggedIn={isLoggedIn}
           userinfo={userinfo}
           setEditModeHandler={setEditModeHandler}
         />

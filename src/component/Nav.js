@@ -5,7 +5,10 @@ import axios from 'axios';
 function Nav({ isLoggedIn, setLoggedIn }) {
   const logOutHandler = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/logout`).then(() => {
-      setLoggedIn(false);
+      setLoggedIn({
+        isLogin: false,
+        accessToken: '',
+      });
     });
   };
 
@@ -20,7 +23,7 @@ function Nav({ isLoggedIn, setLoggedIn }) {
         </Link>
 
         <div className="dynamicLink">
-          {isLoggedIn ? (
+          {isLoggedIn.isLogin ? (
             <>
               <Link to="/mypage">
                 <button className="mediumBtn reverse marginR">My page</button>

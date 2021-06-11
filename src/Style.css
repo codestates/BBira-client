@@ -5,7 +5,8 @@
   --redColor: #eb5757;
   --purpleColor: #bb6bd9;
   --darkGrayColor: #565561;
-  --lightGrayColor: #cbc9d1;
+  --grayColor: #cbc9d1;
+  --lightGrayColor: #f2f2f2;
   --blueColor: #72bbff;
   --yellowColor: #ffd75f;
 }
@@ -32,6 +33,7 @@ font-family: 'Quicksand', sans-serif;
   height: 100vh;
   font-family: 'Noto Sans KR', sans-serif;
   color: var(--blackColor);
+  letter-spacing: 1px;
 }
 
 .container {
@@ -49,6 +51,7 @@ button {
   font-family: inherit;
   font-size: 18px;
   font-weight: 500;
+  letter-spacing: 1px;
   color: var(--whiteColor);
   background-color: var(--purpleColor);
   border: none;
@@ -56,10 +59,6 @@ button {
   cursor: pointer;
   line-height: 25px;
 }
-
-/* button:hover { */
-/* box-shadow: ; */
-/* } */
 
 .mediumBtn {
   width: 132px;
@@ -121,8 +120,9 @@ input {
   font-family: inherit;
   font-size: 14px;
   font-weight: 300;
+  letter-spacing: 1px;
   background-color: var(--whiteColor);
-  border: var(--lightGrayColor) solid 1px;
+  border: var(--grayColor) solid 1px;
   outline: none;
   border-radius: 50px;
 }
@@ -163,13 +163,44 @@ textarea {
   font-size: 14px;
   font-weight: 300;
   background-color: var(--whiteColor);
-  border: var(--lightGrayColor) solid 1px;
+  border: var(--grayColor) solid 1px;
   outline: none;
   border-radius: 50px;
 }
 
 textarea.err {
   border-color: var(--redColor);
+}
+
+/* Loading */
+.loadimg {
+  margin-top: 100px;
+}
+.bouncybox {
+  height: 100px;
+  width: 40px;
+  margin-left: 0px;
+}
+.bouncy {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background: var(--purpleColor);
+  animation: bouncy 2s infinite ease-in-out;
+}
+
+@keyframes bouncy {
+  40% {
+    height: 40px;
+  }
+  50% {
+    transform: translate(0, 65px);
+    height: 34px;
+    border-radius: 20px;
+  }
+  65% {
+    height: 40px;
+  }
 }
 
 /* NAV */
@@ -182,7 +213,7 @@ textarea.err {
   align-items: center;
   height: 60px;
   background-color: #fff;
-  border-bottom: var(--lightGrayColor) 1px solid;
+  border-bottom: var(--grayColor) 1px solid;
 }
 
 .nav .container {
@@ -234,6 +265,8 @@ textarea.err {
 }
 
 .grid .tag {
+  display: flex;
+  flex-wrap: wrap;
   font-weight: 600;
 }
 
@@ -265,38 +298,92 @@ textarea.err {
   grid-template-columns: 142px 446px;
 }
 
-/* .whatthe {
-  line-height: 347px;
-  vertical-align: baseline;
-} */
+/* StoreCard */
 
-/* Loading */
-.loadimg {
-  margin-top: 100px;
-}
-.bouncybox {
-  height: 100px;
-  width: 40px;
-  margin-left: 0px;
-}
-.bouncy {
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  background: var(--purpleColor);
-  animation: bouncy 2s infinite ease-in-out;
+.storeCard.container {
+  display: flex;
+  padding: 50px 25px;
+  background-color: var(--lightGrayColor);
+  border-radius: 4px;
 }
 
-@keyframes bouncy {
-  40% {
-    height: 40px;
-  }
-  50% {
-    transform: translate(0, 65px);
-    height: 34px;
-    border-radius: 20px;
-  }
-  65% {
-    height: 40px;
-  }
+.storeCard.container:first-child {
+  margin-top: 148px;
+}
+
+.storeCard.container:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.storeInfo {
+  display: flex;
+  width: 245px;
+  flex-direction: column;
+  margin-right: 30px;
+}
+
+.tagContainer {
+  display: flex;
+  margin-bottom: 3px;
+  color: var(--purpleColor);
+  font-weight: 600;
+}
+
+.tag {
+  display: inline;
+}
+
+.tag:not(:last-child) {
+  margin-right: 5px;
+}
+
+.storename {
+  margin-bottom: 8px;
+  font-size: 24px;
+  font-weight: 600;
+  word-break: keep-all;
+}
+
+.phone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 18px;
+  width: 164px;
+  font-size: 14px;
+  font-weight: 300;
+  background-color: var(--grayColor);
+  border-radius: 4px;
+}
+
+.phoneIcon {
+  margin-right: 10px;
+  font-size: 12px;
+}
+
+.rating {
+  color: var(--yellowColor);
+}
+
+.slideContainer {
+  display: flex;
+  height: 180px;
+  align-items: center;
+}
+
+.slideIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+
+.slideIcon:active {
+  opacity: 0.6;
+}
+
+.slideItemCard {
+  width: 519px;
 }

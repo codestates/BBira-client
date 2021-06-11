@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function Profile({ userinfo, setEditModeHandler, dropUserHandler }) {
-  const { name, email, storename, address, phone } = userinfo;
+  const { nickname, email, storename, address, phone } = userinfo;
 
   return (
     <div className="mypage container center">
@@ -20,7 +20,7 @@ function Profile({ userinfo, setEditModeHandler, dropUserHandler }) {
       <h1>마이페이지</h1>
       <div className="grid userInfo">
         <div className="tag">name</div>
-        <div className="data">{name}</div>
+        <div className="data">{nickname}</div>
 
         <div className="tag">email</div>
         <div className="data">{email}</div>

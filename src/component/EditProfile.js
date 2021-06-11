@@ -1,41 +1,52 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 
-function EditProfile({ userinfo, setEditModeHandler }) {
-  const { name, email, storename, address, phone } = userinfo;
+function EditProfile({ isLoggedIn, userinfo, setEditModeHandler }) {
+  const { nickname, email, storename, address, phone } = userinfo;
 
   const [inputUserinfo, setUserinfo] = useState({
-    email,
-    name,
+    nickname,
     storename,
     address,
     phone,
+    password: '',
   });
 
   const setUserinfoHandler = (e) => {
     setUserinfo({
       ...inputUserinfo,
+      [e.target.name]: e.target.value,
     });
+    console.log(inputUserinfo);
   };
 
   const editProfileHandler = () => {
-    const { email, name, storename, address, phone } = inputUserinfo;
+    const { nickname, storename, address, phone, password } = inputUserinfo;
     axios
       .post(
-        `${process.env.REACT_APP_API_URL}/fixuserinfo`,
+        `http://ec2-13-209-69-167.ap-northeast-2.compute.amazonaws.com/fixuserinfo`,
         {
-          email,
-          nickname: name,
+          nickname,
           storename,
           address,
           phone,
+          password,
         },
         {
-          'Content-Type': 'application/json',
+          headers: {
+            'Content-Type': 'application/json',
+            authorization: `Bearer ${isLoggedIn.accessToken}`,
+          },
           withCredentials: true,
         }
       )
-      .then(() => {});
+      .then((res) => {
+        console.log(res);
+        setEditModeHandler(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -50,8 +61,8 @@ function EditProfile({ userinfo, setEditModeHandler }) {
         <div className="tag">name</div>
         <input
           className="data"
-          name="name"
-          value={name}
+          name="nickname"
+          placeholder={nickname}
           required
           onChange={setUserinfoHandler}
         />
@@ -63,7 +74,7 @@ function EditProfile({ userinfo, setEditModeHandler }) {
         <input
           className="data"
           name="storename"
-          value={storename}
+          placeholder={storename}
           required
           onChange={setUserinfoHandler}
         />
@@ -72,7 +83,7 @@ function EditProfile({ userinfo, setEditModeHandler }) {
         <input
           className="data"
           name="address"
-          value={address}
+          placeholder={address}
           required
           onChange={setUserinfoHandler}
         />
@@ -81,7 +92,16 @@ function EditProfile({ userinfo, setEditModeHandler }) {
         <input
           className="data"
           name="phone"
-          value={phone}
+          placeholder={phone}
+          required
+          onChange={setUserinfoHandler}
+        />
+
+        <div className="tag">password</div>
+        <input
+          className="data"
+          type="password"
+          name="password"
           required
           onChange={setUserinfoHandler}
         />

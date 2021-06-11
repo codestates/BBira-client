@@ -5,28 +5,15 @@ import axios from 'axios';
 require('dotenv').config();
 
 function App() {
-  const [isLoading, setLoading] = useState(true);
-  const [isLoggedIn, setLoggedIn] = useState(true);
-
-  useEffect(() => {
-    setLoading(false);
+  const [accessToken, setAccessToken] = useState('');
+  const [isLoggedIn, setLoggedIn] = useState({
+    isLogin: false,
+    accessToken: '',
   });
 
   return (
     <div className="App">
-      {isLoading ? (
-        <>
-          <div className="loadimg">
-            <div className="bouncybox">
-              <div className="bouncy"></div>
-            </div>
-          </div>
-        </>
-      ) : (
-        <>
-          <Router isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
-        </>
-      )}
+      <Router isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
     </div>
   );
 }

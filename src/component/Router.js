@@ -22,7 +22,7 @@ function BBiraRoute({ isLoggedIn, setLoggedIn }) {
             <Signup />
           </Route>
           <Route exact path="/mypage">
-            <Mypage setLoggedIn={setLoggedIn} />
+            <Mypage isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
           </Route>
           <Route exact path="/mystore">
             <Itemlist />
