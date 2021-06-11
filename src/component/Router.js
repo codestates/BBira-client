@@ -1,10 +1,11 @@
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import Nav from './Nav';
-import Home from '../pages/Home.js';
-import Signin from '../pages/Signin.js';
-import Signup from '../pages/Signup.js';
-import Mypage from '../pages/Mypage.js';
-import Itemlist from '../pages/Itemlist.js';
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import Nav from "./Nav";
+import Home from "../pages/Home.js";
+import Signin from "../pages/Signin.js";
+import Signup from "../pages/Signup.js";
+import Mypage from "../pages/Mypage.js";
+import Itemlist from "../pages/Itemlist.js";
+import Create from "../pages/Create.js";
 
 function BBiraRoute({ isLoggedIn, setLoggedIn }) {
   return (
@@ -25,7 +26,10 @@ function BBiraRoute({ isLoggedIn, setLoggedIn }) {
             <Mypage isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
           </Route>
           <Route exact path="/mystore">
-            <Itemlist />
+            <Itemlist isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
+          </Route>
+          <Route exact path="/create">
+            <Create isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
           </Route>
         </Switch>
       </Router>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-function Create() {
+function Create({ isLoggedIn, setLoggedIn }) {
   const [inputs, setInputs] = useState({
     itemname: "",
     itemprice: "",
@@ -41,7 +41,10 @@ function Create() {
           itemdesc: inputs.itemdesc,
         },
         {
-          "Content-Type": "application/json",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${isLoggedIn.accessToken}`,
+          },
           withCredentials: true,
         }
       )
