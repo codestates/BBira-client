@@ -7,6 +7,7 @@ function Create({ isLoggedIn, setLoggedIn }) {
     itemname: "",
     itemprice: "",
     itemdesc: "",
+    itemphoto: "",
   });
   const history = useHistory();
 
@@ -29,7 +30,11 @@ function Create({ isLoggedIn, setLoggedIn }) {
     if (!inputs.itemdesc) {
       e.target.form[2].classList.add("err");
     }
+    if (!inputs.itemphoto) {
+      e.target.form[3].classList.add("err");
+    }
     e.preventDefault();
+    console.log(inputs);
 
     //axios
     await axios
@@ -39,6 +44,7 @@ function Create({ isLoggedIn, setLoggedIn }) {
           itemname: inputs.itemname,
           itemprice: inputs.itemprice,
           itemdesc: inputs.itemdesc,
+          itemphoto: inputs.itemphoto,
         },
         {
           headers: {
@@ -82,6 +88,15 @@ function Create({ isLoggedIn, setLoggedIn }) {
           className="itemdesc"
           onChange={inputHandler}
         ></textarea>
+
+        <label htmlFor="itemphoto">itemprice</label>
+        <input
+          type="file"
+          name="itemphoto"
+          onChange={inputHandler}
+          required
+        ></input>
+
         <div></div>
         <button className="mediumBtn createBtn" onClick={CreateRequestHandler}>
           Create

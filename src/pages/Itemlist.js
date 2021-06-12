@@ -7,15 +7,7 @@ import { useHistory } from "react-router-dom";
 function Itemlist({ isLoggedIn, setLoggedIn }) {
   const [itemData, setItemData] = useState({
     isLoad: false,
-    data: [
-      {
-        itemname: "제주도감귤김치",
-        itemprice: "8000",
-        itemdesc: "매콤상콤",
-        itemphoto:
-          "https://discord.com/channels/851263973742739467/851263973742739471/852442082182430781",
-      },
-    ],
+    data: [],
   });
   const [isEdititem, setEdititem] = useState({
     isEdititem: false,
@@ -84,7 +76,7 @@ function Itemlist({ isLoggedIn, setLoggedIn }) {
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     id="Capa_1"
-                    enable-background="new 0 0 512.005 512.005"
+                    enableBackground="new 0 0 512.005 512.005"
                     height="512"
                     viewBox="0 0 512.005 512.005"
                     width="512"
