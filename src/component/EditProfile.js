@@ -2,13 +2,14 @@ import axios from 'axios';
 import React, { useState } from 'react';
 
 function EditProfile({ isLoggedIn, userinfo, setEditModeHandler }) {
-  const { nickname, email, storename, address, phone } = userinfo;
+  const { nickname, email, storename, address, phone, tagname } = userinfo;
 
   const [inputUserinfo, setUserinfo] = useState({
     nickname,
     storename,
     address,
     phone,
+    tagname,
     password: '',
   });
 
@@ -20,8 +21,12 @@ function EditProfile({ isLoggedIn, userinfo, setEditModeHandler }) {
     console.log(inputUserinfo);
   };
 
-  const editProfileHandler = () => {
+  const editProfileHandler = (e) => {
     const { nickname, storename, address, phone, password } = inputUserinfo;
+    if (!password) {
+      e.target.parentNode.previousSibling.classList.add('err');
+      return;
+    }
     axios
       .post(
         `http://ec2-13-209-69-167.ap-northeast-2.compute.amazonaws.com/fixuserinfo`,
@@ -30,6 +35,7 @@ function EditProfile({ isLoggedIn, userinfo, setEditModeHandler }) {
           storename,
           address,
           phone,
+          tagname,
           password,
         },
         {
@@ -97,6 +103,14 @@ function EditProfile({ isLoggedIn, userinfo, setEditModeHandler }) {
           onChange={setUserinfoHandler}
         />
 
+        <div className="tag">tag</div>
+        <input
+          className="data"
+          type="text"
+          name="tag"
+          required
+          onChange={setUserinfoHandler}
+        />
         <div className="tag">password</div>
         <input
           className="data"

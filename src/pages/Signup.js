@@ -12,6 +12,7 @@ function Signup(props) {
     storename: "",
     phone: "",
     address: "",
+    tag: "",
   });
   const history = useHistory();
 
@@ -34,17 +35,21 @@ function Signup(props) {
 
   const signupRequestHandler = async (e) => {
     //기본 회원가입시
+
     if (Owner === false) {
-      if (!inputs.email) {
-        e.target.form[0].classList.add("err");
+      if (!inputs.email || !inputs.password || !inputs.nickname) {
+        if (!inputs.email) {
+          e.target.form[0].classList.add("err");
+        }
+        if (!inputs.password) {
+          e.target.form[1].classList.add("err");
+        }
+        if (!inputs.nickname) {
+          e.target.form[2].classList.add("err");
+        }
+        e.preventDefault();
+        return;
       }
-      if (!inputs.password) {
-        e.target.form[1].classList.add("err");
-      }
-      if (!inputs.nickname) {
-        e.target.form[2].classList.add("err");
-      }
-      e.preventDefault();
 
       await axios
         .post(
@@ -64,27 +69,40 @@ function Signup(props) {
           history.push({ pathname: "/signin" });
         })
         .catch((err) => console.log(err));
-    } /* 상점 회원가입시 */ else {
-      if (!inputs.email) {
-        e.target.form[0].classList.add("err");
+    } else {
+      /* 상점 회원가입시 */
+      if (
+        !inputs.email ||
+        !inputs.password ||
+        !inputs.nickname ||
+        !inputs.phone ||
+        !inputs.address ||
+        !inputs.tag
+      ) {
+        if (!inputs.email) {
+          e.target.form[0].classList.add("err");
+        }
+        if (!inputs.password) {
+          e.target.form[1].classList.add("err");
+        }
+        if (!inputs.nickname) {
+          e.target.form[2].classList.add("err");
+        }
+        if (!inputs.storename) {
+          e.target.form[4].classList.add("err");
+        }
+        if (!inputs.phone) {
+          e.target.form[5].classList.add("err");
+        }
+        if (!inputs.address) {
+          e.target.form[6].classList.add("err");
+        }
+        if (!inputs.tag) {
+          e.target.form[7].classList.add("err");
+        }
+        e.preventDefault();
+        return;
       }
-      if (!inputs.password) {
-        e.target.form[1].classList.add("err");
-      }
-      if (!inputs.nickname) {
-        e.target.form[2].classList.add("err");
-      }
-      if (!inputs.storename) {
-        e.target.form[4].classList.add("err");
-      }
-      if (!inputs.phone) {
-        e.target.form[5].classList.add("err");
-      }
-      if (!inputs.address) {
-        e.target.form[6].classList.add("err");
-      }
-      e.preventDefault();
-
       await axios
         .post(
           `${process.env.REACT_APP_API_URL}/signup`,
@@ -95,6 +113,7 @@ function Signup(props) {
             storename: inputs.storename,
             phone: inputs.phone,
             address: inputs.address,
+            tag: inputs.tag,
           },
           {
             "Content-Type": "application/json",
@@ -135,16 +154,11 @@ function Signup(props) {
 
         <div className="inputGroup">
           <label htmlFor="nickname">nickname</label>
-          <input
-            name="nickname"
-            type="nickname"
-            onChange={inputHandler}
-            required
-          ></input>
+          <input name="nickname" onChange={inputHandler} required></input>
         </div>
 
-        <div>
-          I`m The Owner
+        <div className="isOwner">
+          <span>I`m The Owner</span>
           <label className="switch">
             <input className="toggleBtn" type="checkbox" onClick={isOwner} />
             <span className="slider round"></span>
@@ -154,12 +168,7 @@ function Signup(props) {
           <div>
             <div className="inputGroup">
               <label htmlFor="storename">storename</label>
-              <input
-                name="storename"
-                type="storename"
-                onChange={inputHandler}
-                required
-              ></input>
+              <input name="storename" onChange={inputHandler} required></input>
             </div>
             <div className="inputGroup">
               <label htmlFor="phone">phone</label>
@@ -172,9 +181,13 @@ function Signup(props) {
             </div>
             <div className="inputGroup">
               <label htmlFor="address">address</label>
+              <input name="address" onChange={inputHandler} required></input>
+            </div>
+            <div className="inputGroup">
+              <label htmlFor="tag">tag</label>
               <input
-                name="address"
-                type="address"
+                name="tag"
+                type="text"
                 onChange={inputHandler}
                 required
               ></input>
