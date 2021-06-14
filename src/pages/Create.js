@@ -68,7 +68,7 @@ function Create({ isLoggedIn, setLoggedIn }) {
           withCredentials: true,
         }
       )
-      .then((response) => {
+      .then(() => {
         history.push({ pathname: '/mystore' });
       })
       .catch((err) => console.log(err));
@@ -98,7 +98,6 @@ function Create({ isLoggedIn, setLoggedIn }) {
           className="inputname"
           required
         ></input>
-
         <label className="itemprice" htmlFor="itemprice">
           itemprice
         </label>
@@ -109,7 +108,6 @@ function Create({ isLoggedIn, setLoggedIn }) {
           className="inputprice"
           required
         ></input>
-
         <label className="itemdesc" htmlFor="itemdesc">
           Describe
         </label>
@@ -119,7 +117,6 @@ function Create({ isLoggedIn, setLoggedIn }) {
           onChange={inputHandler}
           className="inputdesc"
         ></textarea>
-
         <label className="itemphoto" htmlFor="itemphoto">
           itemprice
         </label>
@@ -131,12 +128,11 @@ function Create({ isLoggedIn, setLoggedIn }) {
           className="inputphoto"
           required
         ></input>
-
         <button
           className="mediumBtn createBtn submitBtn"
           onClick={CreateRequestHandler}
         >
-          Create
+          Createy
         </button>
       </form>
     </div>
