@@ -46,6 +46,7 @@ function Mypage({ isLoggedIn, setLoggedIn }) {
   };
 
   useEffect(() => {
+    setEditMode(false);
     axios
       .get(`${process.env.REACT_APP_API_URL}/userinfo`, {
         headers: {

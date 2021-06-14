@@ -1,9 +1,10 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function EditProfile({ isLoggedIn, userinfo, setEditModeHandler }) {
+  const history = useHistory();
   const { nickname, email, storename, address, phone, tagname } = userinfo;
-
   const [inputUserinfo, setUserinfo] = useState({
     nickname,
     storename,
@@ -18,7 +19,6 @@ function EditProfile({ isLoggedIn, userinfo, setEditModeHandler }) {
       ...inputUserinfo,
       [e.target.name]: e.target.value,
     });
-    console.log(inputUserinfo);
   };
 
   const editProfileHandler = (e) => {
@@ -48,7 +48,7 @@ function EditProfile({ isLoggedIn, userinfo, setEditModeHandler }) {
       )
       .then((res) => {
         console.log(res);
-        setEditModeHandler(false);
+        history.push({ pathname: '/' });
       })
       .catch((err) => {
         console.log(err);
