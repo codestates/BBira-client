@@ -58,10 +58,10 @@ function Itemlist({ isLoggedIn, setLoggedIn }) {
         </div>
       ) : (
         <div className="container center">
-          <div className="itemlistCard container">
+          <div className="bgLightGray itemlistCard container">
             {itemData.data.length !== 0 ? (
               itemData.data.map((el, i) => {
-                return <Item key={i} item={el} />;
+                return <Item key={i} item={el} isBtn={true} />;
               })
             ) : (
               <div className="bgLightGray center emptyImgContainer">

@@ -132,7 +132,7 @@ function Create({ isLoggedIn, setLoggedIn }) {
           className="mediumBtn createBtn submitBtn"
           onClick={CreateRequestHandler}
         >
-          Createy
+          Create
         </button>
       </form>
     </div>
