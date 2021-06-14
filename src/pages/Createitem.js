@@ -27,8 +27,8 @@ function Create({ isLoggedIn, setLoggedIn }) {
     if (file) {
       reader.readAsDataURL(file);
       reader.onload = (e) => {
-        // console.log(e.target.result);
         setInputs({
+          ...inputs,
           itemphoto: e.target.result,
         });
       };
@@ -49,7 +49,6 @@ function Create({ isLoggedIn, setLoggedIn }) {
       e.target.form[3].classList.add('err');
     }
     e.preventDefault();
-    console.log(inputs);
 
     //axios
     await axios
@@ -70,14 +69,23 @@ function Create({ isLoggedIn, setLoggedIn }) {
         }
       )
       .then((response) => {
-        console.log(response);
-        history.push({ pathname: '/itemlist' });
+        history.push({ pathname: '/mystore' });
       })
       .catch((err) => console.log(err));
   };
 
   return (
     <div className="create container center">
+      <div className="subNav">
+        <button
+          className="mediumBtn reverse"
+          onClick={() => {
+            history.push('/mystore');
+          }}
+        >
+          상품 관리
+        </button>
+      </div>
       <h1>상품 등록</h1>
       <form className="storeManagement">
         <label className="itemname" htmlFor="itemname">
@@ -124,7 +132,10 @@ function Create({ isLoggedIn, setLoggedIn }) {
           required
         ></input>
 
-        <button className="mediumBtn createBtn " onClick={CreateRequestHandler}>
+        <button
+          className="mediumBtn createBtn submitBtn"
+          onClick={CreateRequestHandler}
+        >
           Create
         </button>
       </form>

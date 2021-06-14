@@ -6,7 +6,7 @@ function Profile({ userinfo, setEditModeHandler, dropUserHandler, isLoading }) {
   const { nickname, email, storename, address, phone, tagname } = userinfo;
 
   return (
-    <div className="mypage container center">
+    <>
       <div className="subNav">
         <button
           className="mediumBtn reverse marginR"
@@ -53,7 +53,7 @@ function Profile({ userinfo, setEditModeHandler, dropUserHandler, isLoading }) {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
 

@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
-function Edititem({ chosen, isLoggedIn }) {
-  const { itemname, itemprice, itemdesc, itemphoto } = chosen;
+function Edititem({ chosenItem, isLoggedIn }) {
+  const { itemname, itemprice, itemdesc, itemphoto, tagname, originalname } =
+    chosenItem;
   const history = useHistory();
 
   const inputHandler = (e) => {
@@ -16,33 +17,22 @@ function Edititem({ chosen, isLoggedIn }) {
   };
 
   const [inputs, setInputs] = useState({
+    tagname: '',
     itemname: '',
     itemprice: '',
     itemdesc: '',
     itemphoto: '',
   });
 
-  const editRequestHandler = async (e) => {
-    if (!inputs.itemname) {
-      e.target.form[0].classList.add('err');
-    }
-    if (!inputs.itemprice) {
-      e.target.form[1].classList.add('err');
-    }
-    if (!inputs.itemdesc) {
-      e.target.form[2].classList.add('err');
-    }
-    if (!inputs.itemphoto) {
-      e.target.form[3].classList.add('err');
-    }
-    e.preventDefault();
-    console.log(inputs);
 
+  const editRequestHandler = async () => {
     //axios
     await axios
       .post(
-        `${process.env.REACT_APP_API_URL}/itemregister`,
+        `http://ec2-13-209-69-167.ap-northeast-2.compute.amazonaws.com/fixiteminfo`,
         {
+          ​tagname: inputs.tagname,
+          ​originalname: originalname,
           itemname: inputs.itemname,
           itemprice: inputs.itemprice,
           itemdesc: inputs.itemdesc,
@@ -68,24 +58,49 @@ function Edititem({ chosen, isLoggedIn }) {
       <h1>상품 수정</h1>
       <div className="grid userInfo">
         <div className="tag">itemname</div>
-        <input className="data" onChange={inputHandler}>
-          {itemname}
-        </input>
+        <input
+          className="data"
+          name="itemname"
+          placeholder={itemname}
+          required
+          onChange={inputHandler}
+        />
 
         <div className="tag">itemprice</div>
-        <div className="data" onChange={inputHandler}>
-          {itemprice}
-        </div>
+        <input
+          className="data"
+          name="itemprice"
+          placeholder={itemprice}
+          required
+          onChange={inputHandler}
+        />
 
         <div className="tag">itemdesc</div>
-        <div className="data" onChange={inputHandler}>
-          {itemdesc}
-        </div>
+        <input
+          className="data"
+          name="itemdesc"
+          placeholder={itemdesc}
+          required
+          onChange={inputHandler}
+        />
 
         <div className="tag">itemphoto</div>
-        <div className="data" onChange={inputHandler}>
-          {itemphoto}
-        </div>
+        <input
+          className="data"
+          name="itemphoto"
+          placeholder={itemphoto}
+          required
+          onChange={inputHandler}
+        />
+
+        <div className="tag">tagname</div>
+        <input
+          className="data"
+          name="tagname"
+          placeholder={tagname}
+          required
+          onChange={inputHandler}
+        />
         <div>
           <button className="mediumBtn" onClick={editRequestHandler}>
             Edit

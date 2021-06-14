@@ -22,11 +22,13 @@ function EditProfile({ isLoggedIn, userinfo, setEditModeHandler }) {
   };
 
   const editProfileHandler = (e) => {
-    const { nickname, storename, address, phone, password } = inputUserinfo;
+    const { nickname, storename, address, phone, password, tagname } =
+      inputUserinfo;
     if (!password) {
       e.target.parentNode.previousSibling.classList.add('err');
       return;
     }
+
     axios
       .post(
         `http://ec2-13-209-69-167.ap-northeast-2.compute.amazonaws.com/fixuserinfo`,
@@ -56,7 +58,7 @@ function EditProfile({ isLoggedIn, userinfo, setEditModeHandler }) {
   };
 
   return (
-    <div className="mypage container center">
+    <>
       <div className="subNav">
         <button className="mediumBtn reverse" onClick={setEditModeHandler}>
           마이페이지
@@ -108,6 +110,7 @@ function EditProfile({ isLoggedIn, userinfo, setEditModeHandler }) {
           className="data"
           type="text"
           name="tag"
+          placeholder={tagname}
           required
           onChange={setUserinfoHandler}
         />
@@ -125,7 +128,7 @@ function EditProfile({ isLoggedIn, userinfo, setEditModeHandler }) {
           </button>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
