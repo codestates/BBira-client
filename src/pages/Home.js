@@ -60,7 +60,9 @@ function Home() {
         <>
           {allStoreInfo.map((storeInfo, i) => {
             return (
-              <StoreCard key={i} storeInfo={storeInfo} className="center" />
+              <>
+                <StoreCard key={i} storeInfo={storeInfo} className="center" />
+              </>
             );
           })}
         </>

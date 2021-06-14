@@ -9,7 +9,7 @@ import {
 
 function StoreCard({ storeInfo }) {
   const { tagname, storename, item, phone } = storeInfo;
-  const { itemname, itemphoto, itemdesc, itemprice } = item;
+  // const { itemname, itemphoto, itemdesc, itemprice } = item;
 
   return (
     <div className="storeCard container">
