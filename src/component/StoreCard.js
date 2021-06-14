@@ -12,7 +12,7 @@ function StoreCard({ storeInfo }) {
   const { storename, phone } = shop;
 
   return (
-    <div className="storeCard container">
+    <div className="storeCard container bgLightGray">
       <div className="storeInfo">
         <span className="tagContainer">
           {tagData.map((tag) => {
