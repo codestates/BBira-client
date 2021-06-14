@@ -126,7 +126,6 @@ function Create({ isLoggedIn, setLoggedIn }) {
           required
         ></input>
 
-        <div></div>
         <button className="mediumBtn createBtn " onClick={CreateRequestHandler}>
           Create
         </button>
