@@ -98,7 +98,7 @@ function Create({ isLoggedIn, setLoggedIn }) {
         ></textarea>
 
         <label className="itemphoto" htmlFor="itemphoto">
-          itemprice
+          itemphoto
         </label>
         <input
           type="file"
