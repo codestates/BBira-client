@@ -21,6 +21,7 @@ function Home() {
         console.log(err);
       });
   }, []);
+
   return (
     <div>
       {isLoading ? (

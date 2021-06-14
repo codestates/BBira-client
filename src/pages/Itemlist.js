@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import Item from "../component/Item";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import Item from '../component/Item.js';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 // import Edititem from "../component/EditItem.js";
 
 function Itemlist({ isLoggedIn, setLoggedIn }) {
   const [itemData, setItemData] = useState({
-    isLoad: false,
+    isLoad: true,
     data: [],
   });
   const [isEdititem, setEdititem] = useState({
@@ -14,30 +14,25 @@ function Itemlist({ isLoggedIn, setLoggedIn }) {
     key: -1,
   });
   const history = useHistory();
+
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/allstore`, {
+      .get(`${process.env.REACT_APP_API_URL}/mystore`, {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${isLoggedIn.accessToken}`,
         },
         withCredentials: true,
       })
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data.data.items);
         setItemData({
-          data: res.data.data,
           isLoad: false,
+          data: res.data.data.items,
         });
+        console.log(itemData.isLoad);
       });
-  });
-  let A;
-
-  let btnClick = (e) => {
-    console.log(e.target.key);
-    setEdititem({ isEdititem: true, key: e.target.key });
-    A = e.target.key;
-  };
+  }, []);
 
   return (
     <div className="itemlist container center">
@@ -53,13 +48,11 @@ function Itemlist({ isLoggedIn, setLoggedIn }) {
           </form>
         </div>
       ) : (
-        /*isEdititem ? (
-        <Edititem data={A} />
-      ) : */ <div className="container center">
+        <div className="container center">
           <button
             className="mediumBtn reverse"
             onClick={() => {
-              history.push("/create");
+              history.push('/create');
             }}
           >
             상품 등록
@@ -67,12 +60,13 @@ function Itemlist({ isLoggedIn, setLoggedIn }) {
           <form>
             <h1>상품 리스트</h1>
             <div className="itemlist">
-              {itemData.data.length === 0 ? (
+              {itemData.data.length !== 0 ? (
                 itemData.data.map((el, i) => {
-                  <Item key={i} data={el} editClick={btnClick} />;
+                  return <Item key={i} item={el} />;
                 })
               ) : (
                 <div>
+                  <div>{itemData.data.length}</div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     id="Capa_1"
