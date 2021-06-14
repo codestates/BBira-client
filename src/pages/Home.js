@@ -15,11 +15,11 @@ function Home() {
       })
       .then((res) => {
         setAllStoreInfo(res.data.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
-    setLoading(false);
   }, []);
   return (
     <div>
