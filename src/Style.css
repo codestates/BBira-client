@@ -264,7 +264,7 @@ p.err {
 
 /* Mypage */
 .mypage.container {
-  margin-top: 55px;
+  margin-top: 110px;
 }
 
 .grid {
@@ -295,8 +295,9 @@ p.err {
 }
 
 /* Itemlist */
+
 .itemlist.container {
-  margin-top: 189px;
+  margin-top: 110px;
 }
 
 .itemlistCard {
@@ -314,7 +315,7 @@ p.err {
 
 /* Create */
 .create.container {
-  margin-top: 189px;
+  margin-top: 110px;
 }
 
 .storeManagement {
@@ -335,6 +336,7 @@ p.err {
     '. inputdesc inputdesc inputdesc inputdesc .'
     'itemphoto inputphoto inputphoto inputphoto inputphoto .'
     '. . createBtn createBtn . .';
+  margin-bottom: 80px;
 }
 
 .itemname {

@@ -14,7 +14,7 @@ function Signup(props) {
     storename: '',
     phone: '',
     address: '',
-    tag: '',
+    tagname: '',
   });
 
   function isOwner(e) {
@@ -82,7 +82,7 @@ function Signup(props) {
         !inputs.nickname ||
         !inputs.phone ||
         !inputs.address ||
-        !inputs.tag
+        !inputs.tagname
       ) {
         if (!inputs.email) {
           e.target.form[0].classList.add('err');
@@ -102,12 +102,13 @@ function Signup(props) {
         if (!inputs.address) {
           e.target.form[6].classList.add('err');
         }
-        if (!inputs.tag) {
+        if (!inputs.tagname) {
           e.target.form[7].classList.add('err');
         }
         e.preventDefault();
         return;
       }
+
       await axios
         .post(
           `${process.env.REACT_APP_API_URL}/signup`,
@@ -118,7 +119,7 @@ function Signup(props) {
             storename: inputs.storename,
             phone: inputs.phone,
             address: inputs.address,
-            tag: inputs.tag,
+            tagname: inputs.tagname,
           },
           {
             'Content-Type': 'application/json',
@@ -189,12 +190,12 @@ function Signup(props) {
               <input name="address" onChange={inputHandler} required></input>
             </div>
             <div className="inputGroup">
-              <label htmlFor="tag">tag</label>
+              <label htmlFor="tagname">tag</label>
               <input
-                name="tag"
+                name="tagname"
                 type="text"
                 onChange={inputHandler}
-                placeholder="태그를 쉼표(,)로 구분해 입력해 주세요"
+                placeholder="태그를 쉼표(,)로 띄어쓰기 없이 구분해 입력해 주세요."
                 required
               ></input>
             </div>

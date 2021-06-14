@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 function Item({ item }) {
   const { itemname, itemprice, itemdesc, itemphoto } = item;
+  const [decodePhoto, setDecodePhoto] = useState(null);
+
   return (
     <div className="itemslot">
       <img className="itemphoto" src={itemphoto} />

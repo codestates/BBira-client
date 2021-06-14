@@ -56,9 +56,9 @@ function Mypage({ isLoggedIn, setLoggedIn }) {
         withCredentials: true,
       })
       .then((res) => {
-        console.log(res.data.data);
         const { nickname, email, storename, address, phone, tagname } =
           res.data.data;
+
         setUserinfo({
           nickname,
           email,
@@ -71,7 +71,6 @@ function Mypage({ isLoggedIn, setLoggedIn }) {
       .then(() => {
         setLoading(false);
       });
-    console.log('유즈이펙트');
   }, [isLoggedIn]);
 
   return (
