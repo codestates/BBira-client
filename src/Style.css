@@ -175,6 +175,11 @@ textarea.err {
   margin-bottom: 47px;
 }
 
+p.err {
+  margin-bottom: 6px;
+  color: var(--redColor);
+}
+
 /* Loading */
 .loadimg {
   margin-top: 100px;
@@ -228,6 +233,10 @@ textarea.err {
 /* Signin */
 .signIn.container {
   margin-top: 189px;
+}
+
+.signInForm {
+  margin-bottom: 80px;
 }
 
 .signUpBtn {

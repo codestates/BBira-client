@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './toggle.css';
 import { useHistory } from 'react-router-dom';
 
 function Signup(props) {
   const [Owner, setOwner] = useState(false);
+  const [error, setError] = useState(null);
   const [inputs, setInputs] = useState({
     email: '',
     password: '',
@@ -14,6 +15,7 @@ function Signup(props) {
     address: '',
     tag: '',
   });
+
   const history = useHistory();
 
   function isOwner(e) {
@@ -24,17 +26,22 @@ function Signup(props) {
     }
   }
 
+  useEffect(() => {
+    setError(null);
+    console.log('유즈이펙트');
+  }, []);
+
   const inputHandler = (e) => {
     e.target.classList.remove('err');
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value,
     });
-    console.log(inputs);
   };
 
   const signupRequestHandler = async (e) => {
     //기본 회원가입시
+    e.preventDefault();
 
     if (Owner === false) {
       if (!inputs.email || !inputs.password || !inputs.nickname) {
@@ -47,7 +54,6 @@ function Signup(props) {
         if (!inputs.nickname) {
           e.target.form[2].classList.add('err');
         }
-        e.preventDefault();
         return;
       }
 
@@ -68,7 +74,7 @@ function Signup(props) {
           console.log(response);
           history.push({ pathname: '/signin' });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => setError(err));
     } else {
       /* 상점 회원가입시 */
       if (
@@ -124,14 +130,14 @@ function Signup(props) {
           console.log(response);
           history.push({ pathname: '/signin' });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => setError(err));
     }
   };
 
   return (
     <div className="signIn container center">
       <h1>회원 가입</h1>
-      <form>
+      <form className="signInForm">
         <div className="inputGroup">
           <label htmlFor="email">Email</label>
           <input
@@ -189,6 +195,7 @@ function Signup(props) {
                 name="tag"
                 type="text"
                 onChange={inputHandler}
+                placeholder="태그를 쉼표(,)로 구분해 입력해 주세요"
                 required
               ></input>
             </div>
@@ -196,6 +203,7 @@ function Signup(props) {
         ) : (
           <div></div>
         )}
+        {error ? <p className="err">이미 가입된 이메일 입니다.</p> : <></>}
         <button className="mediumBtn submitBtn" onClick={signupRequestHandler}>
           Sign up
         </button>
