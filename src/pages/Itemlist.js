@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Item from '../component/Item.js';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import Edititem from '../component/EditItem.js';
+import Edititem from '../pages/EditItem.js';
 
 function Itemlist({ isLoggedIn, setLoggedIn }) {
   const [itemData, setItemData] = useState({
