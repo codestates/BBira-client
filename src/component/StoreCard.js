@@ -8,16 +8,17 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 function StoreCard({ storeInfo }) {
-  const { tagname, storename, item, phone } = storeInfo;
+  const { shop, tagData, items } = storeInfo;
+  const { storename, phone } = shop;
 
   return (
     <div className="storeCard container">
       <div className="storeInfo">
         <span className="tagContainer">
-          {tagname.map((el, i) => {
+          {tagData.map((tag) => {
             return (
-              <p className="tag" key={i}>
-                #{el}
+              <p className="tag" key={tag.id}>
+                #{tag.tagname}
               </p>
             );
           })}
