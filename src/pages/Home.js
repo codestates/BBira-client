@@ -32,10 +32,14 @@ function Home() {
         </div>
       ) : (
         <>
-          {allStoreInfo.map((storeInfo, i) => {
+          {allStoreInfo.map((storeInfo) => {
             return (
               <>
-                <StoreCard key={i} storeInfo={storeInfo} className="center" />
+                <StoreCard
+                  key={storeInfo.shop.id}
+                  storeInfo={storeInfo}
+                  className="center"
+                />
               </>
             );
           })}

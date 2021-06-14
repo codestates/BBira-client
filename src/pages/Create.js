@@ -7,8 +7,12 @@ function Create({ isLoggedIn, setLoggedIn }) {
     itemname: '',
     itemprice: '',
     itemdesc: '',
-    itemphoto: '',
   });
+  const [itemphoto, setItemphoto] = useState({
+    file: '',
+    previewURL: '',
+  });
+
   const history = useHistory();
 
   const inputHandler = (e) => {
@@ -17,7 +21,20 @@ function Create({ isLoggedIn, setLoggedIn }) {
       ...inputs,
       [e.target.name]: e.target.value,
     });
-    console.log(inputs);
+  };
+
+  const incodingFile = (e) => {
+    e.preventDefault();
+    let reader = new FileReader();
+    let file = e.target.files[0];
+    reader.readAsDataURL(file);
+    reader.onload = (e) => {
+      console.log(e.target.result);
+      // setItemphoto({
+      //   file,
+      //   previewURL: reader.result,
+      // });
+    };
   };
 
   const CreateRequestHandler = async (e) => {
@@ -103,7 +120,8 @@ function Create({ isLoggedIn, setLoggedIn }) {
         <input
           type="file"
           name="itemphoto"
-          onChange={inputHandler}
+          accept="image/jpg, impge/png, image/jpeg, image/gif"
+          onChange={incodingFile}
           className="inputphoto"
           required
         ></input>
