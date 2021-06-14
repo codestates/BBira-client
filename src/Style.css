@@ -145,8 +145,7 @@ input.err {
 }
 
 .submitBtn,
-.signUpBtn,
-.createBtn {
+.signUpBtn {
   width: 294px;
 }
 
@@ -296,14 +295,64 @@ textarea.err {
 .create.container {
   margin-top: 189px;
 }
-.itemdesc {
-  height: 300px;
-  resize: none;
+
+.storeManagement {
+  display: grid;
+  grid-template-rows: repeat(12, 47px);
+  grid-template-columns: repeat(6, 142px);
+  column-gap: 10px;
+  grid-template-areas:
+    'itemname inputname inputname inputname inputname .'
+    'itemprice inputprice inputprice inputprice inputprice .'
+    'itemdesc inputdesc inputdesc inputdesc inputdesc .'
+    '. inputdesc inputdesc inputdesc inputdesc .'
+    '. inputdesc inputdesc inputdesc inputdesc .'
+    '. inputdesc inputdesc inputdesc inputdesc .'
+    '. inputdesc inputdesc inputdesc inputdesc .'
+    '. inputdesc inputdesc inputdesc inputdesc .'
+    '. inputdesc inputdesc inputdesc inputdesc .'
+    '. inputdesc inputdesc inputdesc inputdesc .'
+    'itemphoto inputphoto inputphoto inputphoto inputphoto .'
+    '. . createBtn createBtn . .';
 }
 
-.grid.storeManagement {
-  grid-template-rows: 61px 61px 347px 100px;
-  grid-template-columns: 142px 446px;
+.itemname {
+  grid-area: itemname;
+}
+.inputname {
+  grid-area: inputname;
+  margin-bottom: 0px;
+  width: 446px;
+}
+.itemprice {
+  grid-area: itemprice;
+}
+.inputprice {
+  grid-area: inputprice;
+  margin-bottom: 0px;
+  width: 446px;
+}
+.itemdesc {
+  grid-area: itemdesc;
+}
+.inputdesc {
+  grid-area: inputdesc;
+  margin-bottom: 0px;
+  width: 598px;
+  height: 347px;
+  resize: none;
+}
+.itemphoto {
+  grid-area: itemphoto;
+}
+.inputphoto {
+  grid-area: inputphoto;
+  margin-bottom: 0px;
+  width: 446px;
+}
+.createBtn {
+  grid-area: createBtn;
+  width: 294px;
 }
 
 /* StoreCard */

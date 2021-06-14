@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import axios from "axios";
-import "./toggle.css";
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import axios from 'axios';
+import './toggle.css';
+import { useHistory } from 'react-router-dom';
 
 function Signup(props) {
   const [Owner, setOwner] = useState(false);
   const [inputs, setInputs] = useState({
-    email: "",
-    password: "",
-    nickname: "",
-    storename: "",
-    phone: "",
-    address: "",
-    tag: "",
+    email: '',
+    password: '',
+    nickname: '',
+    storename: '',
+    phone: '',
+    address: '',
+    tag: '',
   });
   const history = useHistory();
 
@@ -25,7 +25,7 @@ function Signup(props) {
   }
 
   const inputHandler = (e) => {
-    e.target.classList.remove("err");
+    e.target.classList.remove('err');
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value,
@@ -39,13 +39,13 @@ function Signup(props) {
     if (Owner === false) {
       if (!inputs.email || !inputs.password || !inputs.nickname) {
         if (!inputs.email) {
-          e.target.form[0].classList.add("err");
+          e.target.form[0].classList.add('err');
         }
         if (!inputs.password) {
-          e.target.form[1].classList.add("err");
+          e.target.form[1].classList.add('err');
         }
         if (!inputs.nickname) {
-          e.target.form[2].classList.add("err");
+          e.target.form[2].classList.add('err');
         }
         e.preventDefault();
         return;
@@ -60,13 +60,13 @@ function Signup(props) {
             nickname: inputs.password,
           },
           {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             withCredentials: true,
           }
         )
         .then((response) => {
           console.log(response);
-          history.push({ pathname: "/signin" });
+          history.push({ pathname: '/signin' });
         })
         .catch((err) => console.log(err));
     } else {
@@ -80,25 +80,25 @@ function Signup(props) {
         !inputs.tag
       ) {
         if (!inputs.email) {
-          e.target.form[0].classList.add("err");
+          e.target.form[0].classList.add('err');
         }
         if (!inputs.password) {
-          e.target.form[1].classList.add("err");
+          e.target.form[1].classList.add('err');
         }
         if (!inputs.nickname) {
-          e.target.form[2].classList.add("err");
+          e.target.form[2].classList.add('err');
         }
         if (!inputs.storename) {
-          e.target.form[4].classList.add("err");
+          e.target.form[4].classList.add('err');
         }
         if (!inputs.phone) {
-          e.target.form[5].classList.add("err");
+          e.target.form[5].classList.add('err');
         }
         if (!inputs.address) {
-          e.target.form[6].classList.add("err");
+          e.target.form[6].classList.add('err');
         }
         if (!inputs.tag) {
-          e.target.form[7].classList.add("err");
+          e.target.form[7].classList.add('err');
         }
         e.preventDefault();
         return;
@@ -116,13 +116,13 @@ function Signup(props) {
             tag: inputs.tag,
           },
           {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             withCredentials: true,
           }
         )
         .then((response) => {
           console.log(response);
-          history.push({ pathname: "/signin" });
+          history.push({ pathname: '/signin' });
         })
         .catch((err) => console.log(err));
     }

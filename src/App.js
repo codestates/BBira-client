@@ -5,7 +5,6 @@ import axios from 'axios';
 require('dotenv').config();
 
 function App() {
-  const [accessToken, setAccessToken] = useState('');
   const [isLoggedIn, setLoggedIn] = useState({
     isLogin: false,
     accessToken: '',

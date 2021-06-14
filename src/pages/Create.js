@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 function Create({ isLoggedIn, setLoggedIn }) {
   const [inputs, setInputs] = useState({
-    itemname: "",
-    itemprice: "",
-    itemdesc: "",
-    itemphoto: "",
+    itemname: '',
+    itemprice: '',
+    itemdesc: '',
+    itemphoto: '',
   });
   const history = useHistory();
 
   const inputHandler = (e) => {
-    e.target.classList.remove("err");
+    e.target.classList.remove('err');
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value,
@@ -22,16 +22,16 @@ function Create({ isLoggedIn, setLoggedIn }) {
 
   const CreateRequestHandler = async (e) => {
     if (!inputs.itemname) {
-      e.target.form[0].classList.add("err");
+      e.target.form[0].classList.add('err');
     }
     if (!inputs.itemprice) {
-      e.target.form[1].classList.add("err");
+      e.target.form[1].classList.add('err');
     }
     if (!inputs.itemdesc) {
-      e.target.form[2].classList.add("err");
+      e.target.form[2].classList.add('err');
     }
     if (!inputs.itemphoto) {
-      e.target.form[3].classList.add("err");
+      e.target.form[3].classList.add('err');
     }
     e.preventDefault();
     console.log(inputs);
@@ -48,7 +48,7 @@ function Create({ isLoggedIn, setLoggedIn }) {
         },
         {
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${isLoggedIn.accessToken}`,
           },
           withCredentials: true,
@@ -56,7 +56,7 @@ function Create({ isLoggedIn, setLoggedIn }) {
       )
       .then((response) => {
         console.log(response);
-        history.push({ pathname: "/itemlist" });
+        history.push({ pathname: '/itemlist' });
       })
       .catch((err) => console.log(err));
   };
@@ -64,41 +64,52 @@ function Create({ isLoggedIn, setLoggedIn }) {
   return (
     <div className="create container center">
       <h1>상품 등록</h1>
-      <form className="grid storeManagement center">
-        <label htmlFor="itemname">itemname</label>
+      <form className="storeManagement">
+        <label className="itemname" htmlFor="itemname">
+          itemname
+        </label>
         <input
           name="itemname"
           type="itemname"
           onChange={inputHandler}
+          className="inputname"
           required
         ></input>
 
-        <label htmlFor="itemprice">itemprice</label>
+        <label className="itemprice" htmlFor="itemprice">
+          itemprice
+        </label>
         <input
           name="itemprice"
           type="itemprice"
           onChange={inputHandler}
+          className="inputprice"
           required
         ></input>
 
-        <label htmlFor="itemdesc">Describe</label>
+        <label className="itemdesc" htmlFor="itemdesc">
+          Describe
+        </label>
         <textarea
           name="itemdesc"
           type="textarea"
-          className="itemdesc"
           onChange={inputHandler}
+          className="inputdesc"
         ></textarea>
 
-        <label htmlFor="itemphoto">itemprice</label>
+        <label className="itemphoto" htmlFor="itemphoto">
+          itemprice
+        </label>
         <input
           type="file"
           name="itemphoto"
           onChange={inputHandler}
+          className="inputphoto"
           required
         ></input>
 
         <div></div>
-        <button className="mediumBtn createBtn" onClick={CreateRequestHandler}>
+        <button className="mediumBtn createBtn " onClick={CreateRequestHandler}>
           Create
         </button>
       </form>
