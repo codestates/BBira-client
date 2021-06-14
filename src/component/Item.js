@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import EditItem from '../pages/EditItem.js';
 
 function Item({ item }) {
   const { itemname, itemprice, itemdesc, itemphoto } = item;
@@ -8,7 +9,9 @@ function Item({ item }) {
       <span className="itemname">{itemname}</span>
       <span className="itemprice">{itemprice}</span>
       <span className="itemdesc">{itemdesc}</span>
-      <button className="smallBtn">Edit</button>
+      <button className="smallBtn" onClick={() => EditItem(item)}>
+        Edit
+      </button>
     </div>
   );
 }

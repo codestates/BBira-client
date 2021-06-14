@@ -1,9 +1,9 @@
-import React from "react";
-import axios from "axios";
+import React from 'react';
+import axios from 'axios';
 
-function Edititem({ data }) {
-  const { itemname, itemprice, itemdesc, itemphoto } = data;
-  console.log(data);
+function Edititem({ item }) {
+  const { itemname, itemprice, itemdesc, itemphoto } = item;
+  console.log(item);
 
   return (
     <div>
