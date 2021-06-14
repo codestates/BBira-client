@@ -181,6 +181,11 @@ p.err {
   color: var(--redColor);
 }
 
+.bgLightGray {
+  background-color: var(--lightGrayColor);
+  border-radius: 4px;
+}
+
 /* Loading */
 .loadimg {
   margin-top: 100px;
@@ -294,6 +299,19 @@ p.err {
   margin-top: 189px;
 }
 
+.itemlistCard {
+  margin-top: 32px;
+  margin-bottom: 80px;
+}
+
+.emptyImgContainer {
+  height: 500px;
+}
+
+.empty {
+  width: 250px;
+}
+
 /* Create */
 .create.container {
   margin-top: 189px;
@@ -363,8 +381,6 @@ p.err {
 .storeCard.container {
   display: flex;
   padding: 50px 25px;
-  background-color: var(--lightGrayColor);
-  border-radius: 4px;
 }
 
 .storeCard.container:first-child {

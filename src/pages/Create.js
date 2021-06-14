@@ -7,10 +7,7 @@ function Create({ isLoggedIn, setLoggedIn }) {
     itemname: '',
     itemprice: '',
     itemdesc: '',
-  });
-  const [itemphoto, setItemphoto] = useState({
-    file: '',
-    previewURL: '',
+    itemphoto: '',
   });
 
   const history = useHistory();
@@ -27,14 +24,15 @@ function Create({ isLoggedIn, setLoggedIn }) {
     e.preventDefault();
     let reader = new FileReader();
     let file = e.target.files[0];
-    reader.readAsDataURL(file);
-    reader.onload = (e) => {
-      console.log(e.target.result);
-      // setItemphoto({
-      //   file,
-      //   previewURL: reader.result,
-      // });
-    };
+    if (file) {
+      reader.readAsDataURL(file);
+      reader.onload = (e) => {
+        // console.log(e.target.result);
+        setInputs({
+          itemphoto: e.target.result,
+        });
+      };
+    }
   };
 
   const CreateRequestHandler = async (e) => {
