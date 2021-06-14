@@ -1,13 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 function Signin({ setLoggedIn }) {
   const history = useHistory();
+  const [error, setError] = useState(null);
   const [inputs, setInputs] = useState({
     email: '',
     password: '',
   });
+
+  useEffect(() => {
+    setError(null);
+  }, []);
+
   const inputHandler = (e) => {
     e.target.classList.remove('err');
     setInputs({
@@ -15,6 +21,7 @@ function Signin({ setLoggedIn }) {
       [e.target.name]: e.target.value,
     });
   };
+
   const loginRequestHandler = async (e) => {
     if (!inputs.email || !inputs.password) {
       if (!inputs.email) {
@@ -51,7 +58,7 @@ function Signin({ setLoggedIn }) {
           pathname: '/',
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => setError(err));
   };
   return (
     <div className="signIn container center">
@@ -77,8 +84,17 @@ function Signin({ setLoggedIn }) {
             onChange={inputHandler}
           ></input>
         </div>
-
-        <button className="mediumBtn submitBtn" onClick={loginRequestHandler}>
+        {error ? (
+          <p className="err">
+            가입하지 않은 이메일이거나, 잘못된 비밀번호입니다.
+          </p>
+        ) : (
+          <></>
+        )}
+        <button
+          className="mediumBtn submitBtn signInForm"
+          onClick={loginRequestHandler}
+        >
           Sign in
         </button>
         <Link to="/signup">

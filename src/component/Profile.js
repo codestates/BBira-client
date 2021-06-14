@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Loading from './Loading';
 
-function Profile({ userinfo, setEditModeHandler, dropUserHandler }) {
+function Profile({ userinfo, setEditModeHandler, dropUserHandler, isLoading }) {
   const { nickname, email, storename, address, phone, tagname } = userinfo;
 
   return (
@@ -18,33 +19,40 @@ function Profile({ userinfo, setEditModeHandler, dropUserHandler }) {
         </Link>
       </div>
       <h1>마이페이지</h1>
-      <div className="grid userInfo">
-        <div className="tag">name</div>
-        <div className="data">{nickname}</div>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className="grid userInfo">
+          <div className="tag">name</div>
+          <div className="data">{nickname}</div>
 
-        <div className="tag">email</div>
-        <div className="data">{email}</div>
+          <div className="tag">email</div>
+          <div className="data">{email}</div>
 
-        {true ? (
-          <>
-            <div className="tag">store name</div>
-            <div className="data">{storename}</div>
-            <div className="tag">address</div>
-            <div className="data">{address}</div>
-            <div className="tag">phone</div>
-            <div className="data">{phone}</div>
-            <div className="tag">tag</div>
-            <div className="data">{tagname}</div>{' '}
-          </>
-        ) : (
-          <> </>
-        )}
-        <div>
-          <button className="smallBtn red dropOutBtn" onClick={dropUserHandler}>
-            Drop out
-          </button>
+          {true ? (
+            <>
+              <div className="tag">store name</div>
+              <div className="data">{storename}</div>
+              <div className="tag">address</div>
+              <div className="data">{address}</div>
+              <div className="tag">phone</div>
+              <div className="data">{phone}</div>
+              <div className="tag">tag</div>
+              <div className="data">{tagname}</div>{' '}
+            </>
+          ) : (
+            <> </>
+          )}
+          <div>
+            <button
+              className="smallBtn red dropOutBtn"
+              onClick={dropUserHandler}
+            >
+              Drop out
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

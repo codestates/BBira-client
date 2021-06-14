@@ -6,6 +6,7 @@ import axios from 'axios';
 
 function Mypage({ isLoggedIn, setLoggedIn }) {
   const history = useHistory();
+  const [isLoading, setLoading] = useState(true);
   const [isEditMode, setEditMode] = useState(false);
   const [userinfo, setUserinfo] = useState({
     nickname: '',
@@ -45,6 +46,7 @@ function Mypage({ isLoggedIn, setLoggedIn }) {
   };
 
   useEffect(() => {
+    setEditMode(false);
     axios
       .get(`${process.env.REACT_APP_API_URL}/userinfo`, {
         headers: {
@@ -65,8 +67,12 @@ function Mypage({ isLoggedIn, setLoggedIn }) {
           phone,
           tagname,
         });
+      })
+      .then(() => {
+        setLoading(false);
       });
-  }, []);
+    console.log('유즈이펙트');
+  }, [isLoggedIn]);
 
   return (
     <div className="mypage container center">
@@ -81,6 +87,7 @@ function Mypage({ isLoggedIn, setLoggedIn }) {
           userinfo={userinfo}
           setEditModeHandler={setEditModeHandler}
           dropUserHandler={dropUserHandler}
+          isLoading={isLoading}
         />
       )}
     </div>

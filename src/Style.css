@@ -237,17 +237,10 @@ p.err {
 
 .signInForm {
   margin-bottom: 80px;
-}
-
-.signUpBtn {
-  margin-top: 15px;
-}
-
-.signInBtn {
   margin-bottom: 15px;
 }
 
-.signInBtn {
+.submitBtn {
   background-color: var(--greenColor);
 }
 
