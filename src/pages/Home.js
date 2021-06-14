@@ -48,6 +48,7 @@ function Home() {
       });
     setLoading(false);
   }, []);
+
   return (
     <div className="App">
       {isLoading ? (

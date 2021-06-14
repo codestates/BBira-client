@@ -1,18 +1,14 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
 
-function Item({ data, editclick }) {
-  const { itemname, itemprice, itemdesc, itemphoto } = data;
-  const history = useHistory();
+function Item({ item }) {
+  const { itemname, itemprice, itemdesc, itemphoto } = item;
   return (
     <div className="itemslot">
       <img className="itemphoto" src={itemphoto} />
       <span className="itemname">{itemname}</span>
       <span className="itemprice">{itemprice}</span>
       <span className="itemdesc">{itemdesc}</span>
-      <button className="smallBtn" onClick={editclick}>
-        Edit
-      </button>
+      <button className="smallBtn">Edit</button>
     </div>
   );
 }
