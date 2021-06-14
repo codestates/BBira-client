@@ -72,7 +72,7 @@ function Mypage({ isLoggedIn, setLoggedIn }) {
         setLoading(false);
       });
     console.log('유즈이펙트');
-  }, []);
+  }, [isLoggedIn]);
 
   return (
     <div className="mypage container center">
