@@ -4,6 +4,7 @@ import './toggle.css';
 import { useHistory } from 'react-router-dom';
 
 function Signup(props) {
+  const history = useHistory();
   const [Owner, setOwner] = useState(false);
   const [error, setError] = useState(null);
   const [inputs, setInputs] = useState({
@@ -15,8 +16,6 @@ function Signup(props) {
     address: '',
     tag: '',
   });
-
-  const history = useHistory();
 
   function isOwner(e) {
     if (Owner) {
