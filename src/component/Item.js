@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWonSign } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 function Item({ item, isBtn }) {
   const { itemname, itemprice, itemdesc, itemphoto } = item;

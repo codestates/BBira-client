@@ -52,7 +52,7 @@ function Edititem({ chosenItem, isLoggedIn }) {
   return (
     <div className="edit container center">
       <h1>상품 수정</h1>
-      <div className="storeManagement userInfo">
+      <div className="edit storeManagement userInfo">
         <div className="edititemname">itemname</div>
         <input
           className="editinputname"

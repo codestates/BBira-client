@@ -11,9 +11,6 @@ import Item from './Item';
 
 function StoreCard({ storeInfo }) {
   const { shop, tags, items } = storeInfo;
-<<<<<<< HEAD
-  const { storename, phone } = shop;
-=======
   const { storename, phone, id } = shop;
   let count = 0;
   let aaa;
@@ -30,7 +27,6 @@ function StoreCard({ storeInfo }) {
     count++;
     aaa.style.marginLeft = `${count * 222.5}px`;
   };
->>>>>>> 223341ba273c9cc3ba94823dcdd7fa7b5b84a445
 
   return (
     <div className="storeCard container bgLightGray">
