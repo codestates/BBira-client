@@ -3,21 +3,14 @@ import Item from '../component/Item.js';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import Edititem from '../pages/EditItem.js';
+// import Loading from '../component/Loading.js';
 
-function Itemlist({ isLoggedIn, setLoggedIn }) {
+function Itemlist({ isLoggedIn }) {
   const [itemData, setItemData] = useState({
     isLoad: true,
     data: [],
   });
   const [isEdititem, setEdititem] = useState(0);
-  const [whichOne, setWhichOne] = useState({
-    itemname: '',
-    itemphoto: '',
-    itemprice: '',
-    itemdesc: '',
-    originalname: '',
-    id: '',
-  });
   const history = useHistory();
 
   useEffect(() => {
@@ -39,28 +32,8 @@ function Itemlist({ isLoggedIn, setLoggedIn }) {
   }, []);
 
   let clickedBtn = async (e) => {
-    console.log('e.target.id is' + e.target.id);
+    console.log('target is' + e.target.id);
     await setEdititem(e.target.id);
-    console.log('isEdititem is' + isEdititem);
-    await findOne(isEdititem);
-  };
-
-  let findOne = (num) => {
-    // console.log('num is ' + num);
-    let Answer = {};
-    if (num !== 0) {
-      for (let n = 0; n < itemData.data.length; n++) {
-        if (num === itemData.data[n].id) {
-          Answer.itemname = itemData.data[n].itemname;
-          Answer.itemphoto = itemData.data[n].itemphoto;
-          Answer.itemprice = itemData.data[n].itemprice;
-          Answer.itemdesc = itemData.data[n].itemdesc;
-          Answer.id = itemData.data[n].id;
-        }
-      }
-      console.log(Answer);
-      return Answer;
-    }
   };
 
   return (
@@ -75,9 +48,9 @@ function Itemlist({ isLoggedIn, setLoggedIn }) {
           상품 등록
         </button>
       </div>
-      <h1>상품 리스트</h1>
       {itemData.isLoad ? (
         <div>
+          <h1>상품 리스트</h1>
           <div className="container center">
             <div className="loadimg">
               <div className="bouncybox">
@@ -86,7 +59,7 @@ function Itemlist({ isLoggedIn, setLoggedIn }) {
             </div>
           </div>
         </div>
-      ) : true ? (
+      ) : isEdititem === 0 ? (
         /* ▲에딧모드 조건 */
         <div className="container center">
           <div className="bgLightGray itemlistCard container">
@@ -117,7 +90,11 @@ function Itemlist({ isLoggedIn, setLoggedIn }) {
         </div>
       ) : (
         <div>
-          <Edititem chosenItem={findOne(isEdititem)} isLoggedIn={isLoggedIn} />
+          <Edititem
+            chosenId={isEdititem}
+            wholeData={itemData.data}
+            isLoggedIn={isLoggedIn}
+          />
         </div>
       )}
     </div>
