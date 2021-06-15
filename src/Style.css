@@ -412,7 +412,7 @@ p.err {
 .edit.container {
   margin-top: 110px;
 }
-
+/* 
 .edititemname {
   grid-area: edititemname;
 }
@@ -450,7 +450,7 @@ p.err {
 .editBtn {
   grid-area: editeditBtn;
   width: 294px;
-}
+} */
 
 /* StoreCard */
 

@@ -75,9 +75,9 @@ function Itemlist({ isLoggedIn, setLoggedIn }) {
           상품 등록
         </button>
       </div>
+      <h1>상품 리스트</h1>
       {itemData.isLoad ? (
         <div>
-          <h1>상품 리스트</h1>
           <div className="container center">
             <div className="loadimg">
               <div className="bouncybox">
@@ -86,9 +86,9 @@ function Itemlist({ isLoggedIn, setLoggedIn }) {
             </div>
           </div>
         </div>
-      ) : (
+      ) : true ? (
+        /* ▲에딧모드 조건 */
         <div className="container center">
-          <h1>상품 리스트</h1>
           <div className="bgLightGray itemlistCard container">
             {itemData.data.length !== 0 ? (
               itemData.data.map((el, i) => {
@@ -115,10 +115,6 @@ function Itemlist({ isLoggedIn, setLoggedIn }) {
             )}
           </div>
         </div>
-      )}
-
-      {isEdititem === 0 ? (
-        <div></div>
       ) : (
         <div>
           <Edititem chosenItem={findOne(isEdititem)} isLoggedIn={isLoggedIn} />
