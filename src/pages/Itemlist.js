@@ -10,6 +10,14 @@ function Itemlist({ isLoggedIn, setLoggedIn }) {
     data: [],
   });
   const [isEdititem, setEdititem] = useState(0);
+  const [whichOne, setWhichOne] = useState({
+    itemname: '',
+    itemphoto: '',
+    itemprice: '',
+    itemdesc: '',
+    originalname: '',
+    id: '',
+  });
   const history = useHistory();
 
   useEffect(() => {
@@ -27,22 +35,26 @@ function Itemlist({ isLoggedIn, setLoggedIn }) {
           isLoad: false,
           data: res.data.data.items,
         });
-        console.log(itemData.isLoad);
       });
   }, []);
 
-  let clickedBtn = (e) => {
-    console.log(e.target.id);
-    setEdititem(e.target.id);
+  let clickedBtn = async (e) => {
+    console.log('e.target.id is' + e.target.id);
+    await setEdititem(e.target.id);
+    console.log('isEdititem is' + isEdititem);
+    await findOne(isEdititem);
   };
 
-  let findOne = (isEdititem) => {
-    if (isEdititem !== 0) {
-      let Answer = {};
+  let findOne = (num) => {
+    console.log('num is ' + num);
+    let Answer = {};
+    if (num !== 0) {
       for (let n = 0; n < itemData.data.length; n++) {
-        if (isEdititem === itemData.data[n]) {
-          Answer = JSON.parse(JSON.stringify(itemData.data[n]));
-          Answer.originalname = itemData.data[n].itemname;
+        if (num === itemData.data[n].id) {
+          Answer.itemname = itemData.data[n].itemname;
+          Answer.itemphoto = itemData.data[n].itemphoto;
+          Answer.itemprice = itemData.data[n].itemprice;
+          Answer.itemdesc = itemData.data[n].itemdesc;
           Answer.id = itemData.data[n].id;
         }
       }
@@ -63,7 +75,6 @@ function Itemlist({ isLoggedIn, setLoggedIn }) {
           상품 등록
         </button>
       </div>
-
       {itemData.isLoad ? (
         <div>
           <h1>상품 리스트</h1>
@@ -77,10 +88,20 @@ function Itemlist({ isLoggedIn, setLoggedIn }) {
         </div>
       ) : (
         <div className="container center">
+          <h1>상품 리스트</h1>
           <div className="bgLightGray itemlistCard container">
             {itemData.data.length !== 0 ? (
               itemData.data.map((el, i) => {
-                return <Item key={i} item={el} isBtn={true} />;
+                return (
+                  <Item
+                    key={i}
+                    item={el}
+                    isBtn={true}
+                    numId={i}
+                    isLoggedIn={isLoggedIn}
+                    clickedBtn={clickedBtn}
+                  />
+                );
               })
             ) : (
               <div className="bgLightGray center emptyImgContainer">
@@ -95,8 +116,27 @@ function Itemlist({ isLoggedIn, setLoggedIn }) {
           </div>
         </div>
       )}
+
+      {isEdititem === 0 ? (
+        <div></div>
+      ) : (
+        <div>
+          <Edititem chosenItem={findOne(isEdititem)} isLoggedIn={isLoggedIn} />
+        </div>
+      )}
     </div>
   );
 }
 
 export default Itemlist;
+
+{
+  /* <Item
+  key={i}
+  item={el}
+  isBtn={true}
+  numId={i}
+  isLoggedIn={isLoggedIn}
+  clickedBtn={clickedBtn}
+/>; */
+}
