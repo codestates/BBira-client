@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWonSign } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import { Route } from 'react-router';
 
 function Item({ item, isBtn, isLoggedIn, clickedBtn }) {
   const { itemname, itemprice, itemdesc, itemphoto, id } = item;

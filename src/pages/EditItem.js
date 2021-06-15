@@ -1,26 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import Loading from '../component/Loading';
 
-function Edititem({ chosenItem, isLoggedIn }) {
-  const { itemname, itemprice, itemdesc, itemphoto, id } = chosenItem;
-  const history = useHistory();
-
-  const inputHandler = (e) => {
-    e.target.classList.remove('err');
-    setInputs({
-      ...inputs,
-      [e.target.name]: e.target.value,
-    });
-    console.log(inputs);
-  };
-
-  const [inputs, setInputs] = useState({
+function Edititem({ chosenId, isLoggedIn, wholeData }) {
+  const [isDone, setDone] = useState(false);
+  const [Data, setData] = useState({
     itemname: '',
     itemprice: '',
     itemdesc: '',
     itemphoto: '',
+    id: '',
   });
+  const history = useHistory();
+
+  useEffect(() => {
+    for (let n = 0; n < wholeData.length; n++) {
+      if (Number(wholeData[n].id) === Number(chosenId)) {
+        setData({
+          itemname: wholeData[n].itemname,
+          itemprice: wholeData[n].itemprice,
+          itemphoto: wholeData[n].itemphoto,
+          itemdesc: wholeData[n].itemdesc,
+          id: wholeData[n].id,
+        });
+      }
+    }
+    setDone(true);
+  }, []);
+
+  const inputHandler = (e) => {
+    e.target.classList.remove('err');
+    setData({
+      ...Data,
+      [e.target.name]: e.target.value,
+    });
+    console.log(Data);
+  };
+
+  // const [inputs, setInputs] = useState({
+  //   itemname: '',
+  //   itemprice: '',
+  //   itemdesc: '',
+  //   itemphoto: '',
+  //   id: '',
+  // });
 
   const editRequestHandler = async (e) => {
     //axios
@@ -28,11 +52,11 @@ function Edititem({ chosenItem, isLoggedIn }) {
       .post(
         `http://ec2-13-209-69-167.ap-northeast-2.compute.amazonaws.com/fixiteminfo`,
         {
-          itemname: inputs.itemname,
-          itemprice: inputs.itemprice,
-          itemdesc: inputs.itemdesc,
-          itemphoto: inputs.itemphoto,
-          id: id,
+          itemname: Data.itemname,
+          itemprice: Data.itemprice,
+          itemdesc: Data.itemdesc,
+          itemphoto: Data.itemphoto,
+          id: Data.id,
         },
         {
           headers: {
@@ -44,55 +68,67 @@ function Edititem({ chosenItem, isLoggedIn }) {
       )
       .then((response) => {
         console.log(response);
-        history.push({ pathname: '/itemlist' });
+        history.push({ pathname: '/mypage' });
+        history.push({ pathname: '/mystore' });
       })
       .catch((err) => console.log(err));
   };
 
   return (
-    <div className="edit container center">
-      <h1>상품 수정</h1>
-      <div className="edit storeManagement userInfo">
-        <div className="edititemname">itemname</div>
-        <input
-          className="editinputname"
-          name="itemname"
-          placeholder={itemname}
-          required
-          onChange={inputHandler}
-        />
+    <div className="container center">
+      {isDone ? (
+        <div>
+          <h1>상품 수정</h1>
+          <div className="storeManagement userInfo">
+            <div className="itemname">itemname</div>
+            <input
+              className="inputname"
+              name="itemname"
+              placeholder={Data.itemname}
+              required
+              onChange={inputHandler}
+            />
 
-        <div className="edititemprice">itemprice</div>
-        <input
-          className="editinputprice"
-          name="itemprice"
-          placeholder={itemprice}
-          required
-          onChange={inputHandler}
-        />
+            <div className="itemprice">itemprice</div>
+            <input
+              className="inputprice"
+              name="itemprice"
+              placeholder={Data.itemprice}
+              required
+              onChange={inputHandler}
+            />
 
-        <div className="edititemdesc">itemdesc</div>
-        <textarea
-          className="editinputdesc"
-          name="itemdesc"
-          placeholder={itemdesc}
-          required
-          onChange={inputHandler}
-        />
+            <div className="itemdesc">itemdesc</div>
+            <textarea
+              className="inputdesc"
+              name="itemdesc"
+              placeholder={Data.itemdesc}
+              required
+              onChange={inputHandler}
+            />
 
-        <div className="edititemphoto">itemphoto</div>
-        <input
-          type="file"
-          className="editinputphoto"
-          name="itemphoto"
-          placeholder={itemphoto}
-          required
-          onChange={inputHandler}
-        />
-        <button className="mediumBtn editBtn" onClick={editRequestHandler}>
-          Edit
-        </button>
-      </div>
+            <div className="itemphoto">itemphoto</div>
+            <input
+              type="file"
+              className="inputphoto"
+              name="itemphoto"
+              placeholder={Data.itemphoto}
+              required
+              onChange={inputHandler}
+            />
+            <button
+              className="mediumBtn createBtn"
+              onClick={editRequestHandler}
+            >
+              Edit
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <Loading />
+        </div>
+      )}
     </div>
   );
 }
