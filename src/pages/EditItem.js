@@ -44,52 +44,55 @@ function Edititem({ chosenItem, isLoggedIn }) {
       )
       .then((response) => {
         console.log(response);
-        history.push({ pathname: '/itemlist' });
+        history.push({ pathname: '/' });
+      })
+      .then(() => {
+        history.push({ pathname: '/mystore' });
       })
       .catch((err) => console.log(err));
   };
 
   return (
-    <div className="edit container center">
+    <div className="container center">
       <h1>상품 수정</h1>
-      <div className="edit storeManagement userInfo">
-        <div className="edititemname">itemname</div>
+      <div className="storeManagement userInfo">
+        <div className="itemname">itemname</div>
         <input
-          className="editinputname"
+          className="inputname"
           name="itemname"
           placeholder={itemname}
           required
           onChange={inputHandler}
         />
 
-        <div className="edititemprice">itemprice</div>
+        <div className="itemprice">itemprice</div>
         <input
-          className="editinputprice"
+          className="inputprice"
           name="itemprice"
           placeholder={itemprice}
           required
           onChange={inputHandler}
         />
 
-        <div className="edititemdesc">itemdesc</div>
+        <div className="itemdesc">itemdesc</div>
         <textarea
-          className="editinputdesc"
+          className="inputdesc"
           name="itemdesc"
           placeholder={itemdesc}
           required
           onChange={inputHandler}
         />
 
-        <div className="edititemphoto">itemphoto</div>
+        <div className="itemphoto">itemphoto</div>
         <input
           type="file"
-          className="editinputphoto"
+          className="inputphoto"
           name="itemphoto"
           placeholder={itemphoto}
           required
           onChange={inputHandler}
         />
-        <button className="mediumBtn editBtn" onClick={editRequestHandler}>
+        <button className="mediumBtn createBtn" onClick={editRequestHandler}>
           Edit
         </button>
       </div>

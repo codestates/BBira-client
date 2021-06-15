@@ -310,6 +310,7 @@ p.err {
 }
 
 .emptyImgContainer {
+  width: 900px;
   height: 500px;
 }
 
@@ -386,28 +387,7 @@ p.err {
 .edit.container {
   margin-top: 110px;
 }
-
-.edit.storeManagement {
-  display: grid;
-  grid-template-rows: repeat(12, 47px);
-  grid-template-columns: repeat(6, 142px);
-  column-gap: 10px;
-  grid-template-areas:
-    'edititemname editinputname editinputname editinputname editinputname .'
-    'edititemprice editinputprice editinputprice editinputprice editinputprice .'
-    'edititemdesc editinputdesc editinputdesc editinputdesc editinputdesc .'
-    '. editinputdesc editinputdesc editinputdesc editinputdesc .'
-    '. editinputdesc editinputdesc editinputdesc editinputdesc .'
-    '. editinputdesc editinputdesc editinputdesc editinputdesc .'
-    '. editinputdesc editinputdesc editinputdesc editinputdesc .'
-    '. editinputdesc editinputdesc editinputdesc editinputdesc .'
-    '. editinputdesc editinputdesc editinputdesc editinputdesc .'
-    '. editinputdesc editinputdesc editinputdesc editinputdesc .'
-    'edititemphoto editinputphoto editinputphoto editinputphoto editinputphoto .'
-    '. . editBtn editBtn . .';
-  margin-bottom: 80px;
-}
-
+/* 
 .edititemname {
   grid-area: edititemname;
 }
@@ -445,7 +425,7 @@ p.err {
 .editBtn {
   grid-area: editeditBtn;
   width: 294px;
-}
+} */
 
 /* StoreCard */
 
@@ -546,12 +526,12 @@ p.err {
 
 .slideItemCard {
   margin: 0 10px 0 10px;
-  display: flex;
   width: 518px;
   overflow: hidden;
 }
 
 .slideAnimation {
+  display: flex;
   transition: 0.8s ease-in-out;
 }
 

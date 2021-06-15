@@ -19,12 +19,19 @@ function StoreCard({ storeInfo }) {
   }, []);
   const prev = () => {
     console.log(aaa);
-    count--;
+    count++;
+    if (count === 1) {
+      count = 0;
+    }
     aaa.style.marginLeft = `${count * 222.5}px`;
   };
 
   const next = () => {
-    count++;
+    count--;
+    if (Math.abs(count) === items.length) {
+      console.log(items.length);
+      count = Number(`-${items.length - 1}`);
+    }
     aaa.style.marginLeft = `${count * 222.5}px`;
   };
 

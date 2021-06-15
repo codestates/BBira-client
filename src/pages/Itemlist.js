@@ -46,7 +46,7 @@ function Itemlist({ isLoggedIn, setLoggedIn }) {
   };
 
   let findOne = (num) => {
-    console.log('num is ' + num);
+    // console.log('num is ' + num);
     let Answer = {};
     if (num !== 0) {
       for (let n = 0; n < itemData.data.length; n++) {
