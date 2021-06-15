@@ -36,7 +36,7 @@ function Home() {
             return (
               <>
                 <StoreCard
-                  key={storeInfo.shop.id}
+                  key={`storeCard${storeInfo.shop.id}`}
                   storeInfo={storeInfo}
                   className="center"
                 />

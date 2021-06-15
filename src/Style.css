@@ -451,22 +451,23 @@ p.err {
 
 .storeCard.container {
   display: flex;
-  padding: 50px 25px;
+  margin-bottom: 20px;
+  height: 338px;
 }
 
 .storeCard.container:first-child {
   margin-top: 148px;
 }
 
-.storeCard.container:not(:last-child) {
-  margin-bottom: 20px;
+.storeCard.container:last-child {
+  margin-bottom: 80px;
 }
 
 .storeInfo {
   display: flex;
+  margin: 40px 25px;
   width: 245px;
   flex-direction: column;
-  margin-right: 30px;
 }
 
 .tagContainer {
@@ -486,9 +487,19 @@ p.err {
 
 .storename {
   margin-bottom: 8px;
+  width: 221px;
   font-size: 24px;
   font-weight: 600;
   word-break: keep-all;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  word-wrap: break-word;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .phone {
@@ -514,14 +525,16 @@ p.err {
 
 .slideContainer {
   display: flex;
-  height: 180px;
+  margin-right: 25px;
   align-items: center;
+  height: 338px;
 }
 
 .slideIcon {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 24px;
   width: 28px;
   height: 28px;
   cursor: pointer;
@@ -532,8 +545,14 @@ p.err {
 }
 
 .slideItemCard {
+  margin: 0 10px 0 10px;
   display: flex;
-  width: 519px;
+  width: 518px;
+  overflow: hidden;
+}
+
+.slideAnimation {
+  transition: 0.8s ease-in-out;
 }
 
 /* Item */
@@ -578,7 +597,7 @@ span.itemname {
 
 span.itemdesc {
   /* display: inline-block; */
-  margin-bottom: 18px;
+  margin-bottom: 10px;
   line-height: 22px;
   height: 44px;
   font-weight: 300;
