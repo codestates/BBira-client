@@ -48,7 +48,9 @@ function StoreCard({ storeInfo }) {
           })}
         </span>
 
-        <h2 className="storename">{storename}</h2>
+        <Link>
+          <h2 className="storename">{storename}</h2>
+        </Link>
         <span className="phone">
           <FontAwesomeIcon icon={faPhoneAlt} className="phoneIcon" />
           {phone}
