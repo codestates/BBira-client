@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithubAlt } from '@fortawesome/free-brands-svg-icons';
+import { faSms } from '@fortawesome/free-solid-svg-icons';
 
 function Signin({ setLoggedIn }) {
   const history = useHistory();
@@ -13,6 +16,17 @@ function Signin({ setLoggedIn }) {
   useEffect(() => {
     setError(null);
   }, []);
+
+  const KAKAO_CLIENT_ID = `33b7ac8a635390fbdc571a9e6c1b63d0`;
+  const KAKAO_CLIENT_SECRET = `r9J8FT3gvpvWOa6YcZ38nL1QyoTAJGgm`;
+  const KAKAO_REDIRECT_URI = `http://localhost:3000/`;
+  const KAKAO_LOGIN_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_CLIENT_ID}&client_secret=${KAKAO_CLIENT_SECRET}&response_type=code&redirect_uri=${KAKAO_REDIRECT_URI}`;
+
+  const kakaoLogin = (e) => {
+    e.preventDefault();
+    window.location.assign(KAKAO_LOGIN_URL, '간편 로그인');
+    // 유저 로그인 페이지 이동
+  };
 
   const inputHandler = (e) => {
     e.target.classList.remove('err');
@@ -100,6 +114,15 @@ function Signin({ setLoggedIn }) {
         <Link to="/signup">
           <button className="mediumBtn reverse signUpBtn">Sign up</button>
         </Link>
+
+        <div className="socialLogin">
+          <div className="kakao socialBtn" onClick={kakaoLogin}>
+            <FontAwesomeIcon icon={faSms} />
+          </div>
+          <div className="github socialBtn">
+            <FontAwesomeIcon icon={faGithubAlt} />
+          </div>
+        </div>
       </form>
     </div>
   );

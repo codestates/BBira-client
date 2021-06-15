@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faPhoneAlt,
@@ -48,7 +49,9 @@ function StoreCard({ storeInfo }) {
           })}
         </span>
 
-        <h2 className="storename">{storename}</h2>
+        <Link to="store/">
+          <h2 className="storename">{storename}</h2>
+        </Link>
         <span className="phone">
           <FontAwesomeIcon icon={faPhoneAlt} className="phoneIcon" />
           {phone}

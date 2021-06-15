@@ -6,7 +6,8 @@ import Signup from '../pages/Signup.js';
 import Mypage from '../pages/Mypage.js';
 import Itemlist from '../pages/Itemlist.js';
 import Createitem from '../pages/Createitem.js';
-import Edititem from '../pages/EditItem.js';
+import Store from '../pages/Store.js';
+// import Edititem from '../pages/EditItem.js';
 
 function BBiraRoute({ isLoggedIn, setLoggedIn }) {
   return (
@@ -16,6 +17,9 @@ function BBiraRoute({ isLoggedIn, setLoggedIn }) {
         <Switch>
           <Route exact path="/">
             <Home />
+          </Route>
+          <Route exact path="/store:id">
+            <Store />
           </Route>
           <Route exact path="/signin">
             <Signin setLoggedIn={setLoggedIn} />
