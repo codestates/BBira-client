@@ -301,8 +301,12 @@ p.err {
 }
 
 .itemlistCard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   margin-top: 32px;
   margin-bottom: 80px;
+  padding: 10px 10px 0 10px;
 }
 
 .emptyImgContainer {
@@ -528,5 +532,84 @@ p.err {
 }
 
 .slideItemCard {
+  display: flex;
   width: 519px;
+}
+
+/* Item */
+
+.itemSlot {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 212.5px;
+  background-color: var(--whiteColor);
+  border-radius: 4px;
+}
+
+.itemSlot:nth-child(4n) {
+  margin-right: 0;
+}
+
+.itemphotoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+  width: 193px;
+  height: 150px;
+  border-radius: 4px;
+}
+
+.itemphoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+span.itemname {
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+span.itemdesc {
+  /* display: inline-block; */
+  margin-bottom: 18px;
+  line-height: 22px;
+  height: 44px;
+  font-weight: 300;
+  font-size: 16px;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  word-wrap: break-word;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+span.itemprice {
+  text-align: end;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.wonSignIcon {
+  font-size: 16px;
+  margin-left: 4px;
+}
+
+.buttonContainer {
+  display: flex;
+  margin-top: 15px;
+}
+
+.itemEditBtn {
+  margin-right: 10px;
 }

@@ -6,6 +6,7 @@ import {
   faChevronLeft,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
+import Item from './Item';
 
 function StoreCard({ storeInfo }) {
   const { shop, tags, items } = storeInfo;
@@ -41,7 +42,11 @@ function StoreCard({ storeInfo }) {
         <div className="slideIcon">
           <FontAwesomeIcon icon={faChevronLeft} />
         </div>
-        <div className="slideItemCard">{/* 슬라이드 아이템 카드 */}</div>
+        <div className="slideItemCard">
+          {items.map((el) => {
+            return <Item item={el} isBtn={false} />;
+          })}
+        </div>
         <div className="slideIcon">
           <FontAwesomeIcon icon={faChevronRight} />
         </div>
