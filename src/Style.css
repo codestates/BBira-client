@@ -310,6 +310,7 @@ p.err {
 }
 
 .emptyImgContainer {
+  width: 900px;
   height: 500px;
 }
 
@@ -385,27 +386,6 @@ p.err {
 /* Edit item */
 .edit.container {
   margin-top: 110px;
-}
-
-.storeManagement {
-  display: grid;
-  grid-template-rows: repeat(12, 47px);
-  grid-template-columns: repeat(6, 142px);
-  column-gap: 10px;
-  grid-template-areas:
-    'edititemname editinputname editinputname editinputname editinputname .'
-    'edititemprice editinputprice editinputprice editinputprice editinputprice .'
-    'edititemdesc editinputdesc editinputdesc editinputdesc editinputdesc .'
-    '. editinputdesc editinputdesc editinputdesc editinputdesc .'
-    '. editinputdesc editinputdesc editinputdesc editinputdesc .'
-    '. editinputdesc editinputdesc editinputdesc editinputdesc .'
-    '. editinputdesc editinputdesc editinputdesc editinputdesc .'
-    '. editinputdesc editinputdesc editinputdesc editinputdesc .'
-    '. editinputdesc editinputdesc editinputdesc editinputdesc .'
-    '. editinputdesc editinputdesc editinputdesc editinputdesc .'
-    'edititemphoto editinputphoto editinputphoto editinputphoto editinputphoto .'
-    '. . editBtn editBtn . .';
-  margin-bottom: 80px;
 }
 
 .edititemname {
