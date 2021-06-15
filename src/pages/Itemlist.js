@@ -41,10 +41,12 @@ function Itemlist({ isLoggedIn, setLoggedIn }) {
       let Answer = {};
       for (let n = 0; n < itemData.data.length; n++) {
         if (isEdititem === itemData.data[n]) {
-          Answer = Object.keys();
+          Answer = JSON.parse(JSON.stringify(itemData.data[n]));
           Answer.originalname = itemData.data[n].itemname;
+          Answer.id = itemData.data[n].id;
         }
       }
+      console.log(Answer);
       return Answer;
     }
   };
@@ -62,12 +64,14 @@ function Itemlist({ isLoggedIn, setLoggedIn }) {
         </button>
       </div>
 
-      <h1>상품 리스트</h1>
       {itemData.isLoad ? (
-        <div className="container center">
-          <div className="loadimg">
-            <div className="bouncybox">
-              <div className="bouncy"></div>
+        <div>
+          <h1>상품 리스트</h1>
+          <div className="container center">
+            <div className="loadimg">
+              <div className="bouncybox">
+                <div className="bouncy"></div>
+              </div>
             </div>
           </div>
         </div>

@@ -182,7 +182,7 @@ p.err {
 }
 
 .bgLightGray {
-  background-color: var(--lightGrayColor);
+  background-color: #f2f2f2;
   border-radius: 4px;
 }
 
@@ -335,7 +335,7 @@ p.err {
     '. inputdesc inputdesc inputdesc inputdesc .'
     '. inputdesc inputdesc inputdesc inputdesc .'
     'itemphoto inputphoto inputphoto inputphoto inputphoto .'
-    '. . createBtn createBtn . .';
+    '. . createBtn createBtn. .';
   margin-bottom: 80px;
 }
 
@@ -375,6 +375,71 @@ p.err {
 }
 .createBtn {
   grid-area: createBtn;
+  width: 294px;
+}
+
+/* Edit item */
+.edit.container {
+  margin-top: 110px;
+}
+
+.storeManagement {
+  display: grid;
+  grid-template-rows: repeat(12, 47px);
+  grid-template-columns: repeat(6, 142px);
+  column-gap: 10px;
+  grid-template-areas:
+    'edititemname editinputname editinputname editinputname editinputname .'
+    'edititemprice editinputprice editinputprice editinputprice editinputprice .'
+    'edititemdesc editinputdesc editinputdesc editinputdesc editinputdesc .'
+    '. editinputdesc editinputdesc editinputdesc editinputdesc .'
+    '. editinputdesc editinputdesc editinputdesc editinputdesc .'
+    '. editinputdesc editinputdesc editinputdesc editinputdesc .'
+    '. editinputdesc editinputdesc editinputdesc editinputdesc .'
+    '. editinputdesc editinputdesc editinputdesc editinputdesc .'
+    '. editinputdesc editinputdesc editinputdesc editinputdesc .'
+    '. editinputdesc editinputdesc editinputdesc editinputdesc .'
+    'edititemphoto editinputphoto editinputphoto editinputphoto editinputphoto .'
+    '. . editBtn editBtn . .';
+  margin-bottom: 80px;
+}
+
+.edititemname {
+  grid-area: edititemname;
+}
+.editinputname {
+  grid-area: editinputname;
+  margin-bottom: 0px;
+  width: 446px;
+}
+.edititemprice {
+  grid-area: edititemprice;
+}
+.editinputprice {
+  grid-area: editinputprice;
+  margin-bottom: 0px;
+  width: 446px;
+}
+.edititemdesc {
+  grid-area: edititemdesc;
+}
+.editinputdesc {
+  grid-area: editinputdesc;
+  margin-bottom: 0px;
+  width: 598px;
+  height: 347px;
+  resize: none;
+}
+.edititemphoto {
+  grid-area: edititemphoto;
+}
+.editinputphoto {
+  grid-area: editinputphoto;
+  margin-bottom: 0px;
+  width: 446px;
+}
+.editBtn {
+  grid-area: editeditBtn;
   width: 294px;
 }
 

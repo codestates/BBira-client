@@ -3,8 +3,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 function Edititem({ chosenItem, isLoggedIn }) {
-  const { itemname, itemprice, itemdesc, itemphoto, tagname, originalname } =
-    chosenItem;
+  const { itemname, itemprice, itemdesc, itemphoto, id } = chosenItem;
   const history = useHistory();
 
   const inputHandler = (e) => {
@@ -17,26 +16,23 @@ function Edititem({ chosenItem, isLoggedIn }) {
   };
 
   const [inputs, setInputs] = useState({
-    tagname: '',
     itemname: '',
     itemprice: '',
     itemdesc: '',
     itemphoto: '',
   });
 
-
-  const editRequestHandler = async () => {
+  const editRequestHandler = async (e) => {
     //axios
     await axios
       .post(
         `http://ec2-13-209-69-167.ap-northeast-2.compute.amazonaws.com/fixiteminfo`,
         {
-          ​tagname: inputs.tagname,
-          ​originalname: originalname,
           itemname: inputs.itemname,
           itemprice: inputs.itemprice,
           itemdesc: inputs.itemdesc,
           itemphoto: inputs.itemphoto,
+          id: id,
         },
         {
           headers: {
@@ -54,58 +50,48 @@ function Edititem({ chosenItem, isLoggedIn }) {
   };
 
   return (
-    <div>
+    <div className="edit container center">
       <h1>상품 수정</h1>
-      <div className="grid userInfo">
-        <div className="tag">itemname</div>
+      <div className="storeManagement userInfo">
+        <div className="edititemname">itemname</div>
         <input
-          className="data"
+          className="editinputname"
           name="itemname"
           placeholder={itemname}
           required
           onChange={inputHandler}
         />
 
-        <div className="tag">itemprice</div>
+        <div className="edititemprice">itemprice</div>
         <input
-          className="data"
+          className="editinputprice"
           name="itemprice"
           placeholder={itemprice}
           required
           onChange={inputHandler}
         />
 
-        <div className="tag">itemdesc</div>
-        <input
-          className="data"
+        <div className="edititemdesc">itemdesc</div>
+        <textarea
+          className="editinputdesc"
           name="itemdesc"
           placeholder={itemdesc}
           required
           onChange={inputHandler}
         />
 
-        <div className="tag">itemphoto</div>
+        <div className="edititemphoto">itemphoto</div>
         <input
-          className="data"
+          type="file"
+          className="editinputphoto"
           name="itemphoto"
           placeholder={itemphoto}
           required
           onChange={inputHandler}
         />
-
-        <div className="tag">tagname</div>
-        <input
-          className="data"
-          name="tagname"
-          placeholder={tagname}
-          required
-          onChange={inputHandler}
-        />
-        <div>
-          <button className="mediumBtn" onClick={editRequestHandler}>
-            Edit
-          </button>
-        </div>
+        <button className="mediumBtn editBtn" onClick={editRequestHandler}>
+          Edit
+        </button>
       </div>
     </div>
   );

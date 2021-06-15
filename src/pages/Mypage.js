@@ -56,8 +56,12 @@ function Mypage({ isLoggedIn, setLoggedIn }) {
         withCredentials: true,
       })
       .then((res) => {
-        const { nickname, email, storename, address, phone, tagname } =
-          res.data.data;
+        const {
+          user: { nickname, email },
+          store: { storename, address, phone },
+          tags: tagname,
+        } = res.data.data;
+        console.log(res.data);
 
         setUserinfo({
           nickname,

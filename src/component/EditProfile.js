@@ -24,6 +24,7 @@ function EditProfile({ isLoggedIn, userinfo, setEditModeHandler }) {
   const editProfileHandler = (e) => {
     const { nickname, storename, address, phone, password, tagname } =
       inputUserinfo;
+    console.log(inputUserinfo);
     if (!password) {
       e.target.parentNode.previousSibling.classList.add('err');
       return;
@@ -34,11 +35,11 @@ function EditProfile({ isLoggedIn, userinfo, setEditModeHandler }) {
         `http://ec2-13-209-69-167.ap-northeast-2.compute.amazonaws.com/fixuserinfo`,
         {
           nickname,
-          storename,
-          address,
           phone,
-          tagname,
+          address,
+          storename,
           password,
+          tagname,
         },
         {
           headers: {
@@ -109,7 +110,7 @@ function EditProfile({ isLoggedIn, userinfo, setEditModeHandler }) {
         <input
           className="data"
           type="text"
-          name="tag"
+          name="tagname"
           placeholder={tagname}
           required
           onChange={setUserinfoHandler}
