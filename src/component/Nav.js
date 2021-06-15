@@ -4,12 +4,20 @@ import axios from 'axios';
 
 function Nav({ isLoggedIn, setLoggedIn }) {
   const logOutHandler = () => {
-    axios.get(`${process.env.REACT_APP_API_URL}/logout`).then(() => {
-      setLoggedIn({
-        isLogin: false,
-        accessToken: '',
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/logout`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${isLoggedIn.accessToken}`,
+        },
+        withCredentials: true,
+      })
+      .then(() => {
+        setLoggedIn({
+          isLogin: false,
+          accessToken: '',
+        });
       });
-    });
   };
 
   return (

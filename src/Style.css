@@ -526,12 +526,12 @@ p.err {
 
 .slideItemCard {
   margin: 0 10px 0 10px;
-  display: flex;
   width: 518px;
   overflow: hidden;
 }
 
 .slideAnimation {
+  display: flex;
   transition: 0.8s ease-in-out;
 }
 
