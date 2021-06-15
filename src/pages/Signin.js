@@ -18,14 +18,18 @@ function Signin({ setLoggedIn }) {
   }, []);
 
   const KAKAO_CLIENT_ID = `33b7ac8a635390fbdc571a9e6c1b63d0`;
-  const KAKAO_CLIENT_SECRET = `r9J8FT3gvpvWOa6YcZ38nL1QyoTAJGgm`;
+  const KAKAO_CLIENT_SECRET = `2asopaNJYdxoBux1imyKOYkc5XBQHNQt`;
   const KAKAO_REDIRECT_URI = `http://localhost:3000/`;
   const KAKAO_LOGIN_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_CLIENT_ID}&client_secret=${KAKAO_CLIENT_SECRET}&response_type=code&redirect_uri=${KAKAO_REDIRECT_URI}`;
 
   const kakaoLogin = (e) => {
     e.preventDefault();
-    window.location.assign(KAKAO_LOGIN_URL, '간편 로그인');
-    // 유저 로그인 페이지 이동
+    window.location.assign(KAKAO_LOGIN_URL, '카카오 로그인');
+  };
+
+  const gitHubLogin = (e) => {
+    e.preventDefault();
+    // window.location.assign(, '깃헙 로그인');
   };
 
   const inputHandler = (e) => {
