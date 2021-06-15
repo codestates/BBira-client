@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faPhoneAlt,
@@ -9,16 +10,31 @@ import {
 import Item from './Item';
 
 function StoreCard({ storeInfo }) {
-  const { shop, tagData, items } = storeInfo;
-  const { storename, phone } = shop;
+  const { shop, tags, items } = storeInfo;
+  const { storename, phone, id } = shop;
+  let count = 0;
+  let aaa;
+  useEffect(() => {
+    aaa = document.querySelector(`.slideAnimation${id}`);
+  }, []);
+  const prev = () => {
+    console.log(aaa);
+    count--;
+    aaa.style.marginLeft = `${count * 222.5}px`;
+  };
+
+  const next = () => {
+    count++;
+    aaa.style.marginLeft = `${count * 222.5}px`;
+  };
 
   return (
     <div className="storeCard container bgLightGray">
       <div className="storeInfo">
         <span className="tagContainer">
-          {tagData.map((tag) => {
+          {tags.map((tag) => {
             return (
-              <p className="tag" key={tag.id}>
+              <p className="tag" key={`tag${tag.id}`}>
                 #{tag.tagname}
               </p>
             );
@@ -39,15 +55,17 @@ function StoreCard({ storeInfo }) {
         </span>
       </div>
       <div className="slideContainer">
-        <div className="slideIcon">
+        <div className="slideIcon left " onClick={prev}>
           <FontAwesomeIcon icon={faChevronLeft} />
         </div>
         <div className="slideItemCard">
-          {items.map((el) => {
-            return <Item item={el} isBtn={false} />;
-          })}
+          <div className={`slideAnimation${id} slideAnimation`}>
+            {items.map((item) => {
+              return <Item item={item} isBtn={false} key={`tag${item.id}`} />;
+            })}
+          </div>
         </div>
-        <div className="slideIcon">
+        <div className="slideIcon right" onClick={next}>
           <FontAwesomeIcon icon={faChevronRight} />
         </div>
       </div>
