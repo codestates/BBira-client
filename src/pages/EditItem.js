@@ -75,7 +75,7 @@ function Edititem({ chosenId, isLoggedIn, wholeData }) {
   };
 
   return (
-    <div className="container center">
+    <div className="create container center">
       {isDone ? (
         <div>
           <h1>상품 수정</h1>
