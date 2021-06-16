@@ -13,6 +13,12 @@ function EditProfile({ isLoggedIn, userinfo, setEditModeHandler }) {
     tagname,
     password: '',
   });
+  const [oldinfo, setOldinfo] = useState({
+    storename,
+    address,
+    phone,
+    tagname,
+  });
 
   const setUserinfoHandler = (e) => {
     setUserinfo({
@@ -22,13 +28,13 @@ function EditProfile({ isLoggedIn, userinfo, setEditModeHandler }) {
   };
 
   const editProfileHandler = (e) => {
-    const { nickname, storename, address, phone, password, tagname } =
-      inputUserinfo;
-    console.log(inputUserinfo);
+    const { nickname, address, phone, password, tagname } = inputUserinfo;
     if (!password) {
       e.target.parentNode.previousSibling.classList.add('err');
       return;
     }
+
+    let storename = inputUserinfo.storename || oldinfo.storename;
 
     axios
       .post(
@@ -79,42 +85,48 @@ function EditProfile({ isLoggedIn, userinfo, setEditModeHandler }) {
         <div className="tag">email</div>
         <div className="data">{email}</div>
 
-        <div className="tag">store name</div>
-        <input
-          className="data"
-          name="storename"
-          placeholder={storename}
-          required
-          onChange={setUserinfoHandler}
-        />
+        {storename ? (
+          <>
+            <div className="tag">store name</div>
+            <input
+              className="data"
+              name="storename"
+              placeholder={storename}
+              required
+              onChange={setUserinfoHandler}
+            />
 
-        <div className="tag">address</div>
-        <input
-          className="data"
-          name="address"
-          placeholder={address}
-          required
-          onChange={setUserinfoHandler}
-        />
+            <div className="tag">address</div>
+            <input
+              className="data"
+              name="address"
+              placeholder={address}
+              required
+              onChange={setUserinfoHandler}
+            />
 
-        <div className="tag">phone</div>
-        <input
-          className="data"
-          name="phone"
-          placeholder={phone}
-          required
-          onChange={setUserinfoHandler}
-        />
+            <div className="tag">phone</div>
+            <input
+              className="data"
+              name="phone"
+              placeholder={phone}
+              required
+              onChange={setUserinfoHandler}
+            />
 
-        <div className="tag">tag</div>
-        <input
-          className="data"
-          type="text"
-          name="tagname"
-          placeholder={tagname}
-          required
-          onChange={setUserinfoHandler}
-        />
+            <div className="tag">tag</div>
+            <input
+              className="data"
+              type="text"
+              name="tagname"
+              placeholder={tagname}
+              required
+              onChange={setUserinfoHandler}
+            />
+          </>
+        ) : (
+          <></>
+        )}
         <div className="tag">password</div>
         <input
           className="data"

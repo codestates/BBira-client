@@ -9,24 +9,34 @@ function App() {
     isLogin: false,
     accessToken: '',
   });
-  const [whichSite, setWhichSite] = useState('');
 
   useEffect(() => {
-    console.log(whichSite);
-    if (whichSite === 'KAKAO') {
-      const url = new URL(window.location.href);
-      const authorizationCode = url.searchParams.get('code');
-      if (authorizationCode) {
-        getGitHubCode(authorizationCode);
-      }
-    } else {
-      const url = new URL(window.location.href);
-      const authorizationCode = url.searchParams.get('code');
-      if (authorizationCode) {
-        getKakaoCode(authorizationCode);
-      }
+    const url = new URL(window.location.href);
+
+    const authorizationCode = url.searchParams.get('code');
+    if (authorizationCode) {
+      getKakaoCode(authorizationCode);
     }
+
+    refreshTokenRequest();
+    // console.log(document.cookie);
+    // // if () {
+    // // }
   }, []);
+
+  const refreshTokenRequest = () => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/refreshtokenrequest`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res);
+        setLoggedIn({
+          isLogin: true,
+          accessToken: res.data.accessToken,
+        }).catch((err) => console.log(err));
+      });
+  };
 
   const getKakaoCode = (authorizationCode) => {
     console.log('카카오에서 받은 코드 : ', authorizationCode);
@@ -38,12 +48,11 @@ function App() {
         console.log('응답11111', res.data);
         setLoggedIn({
           isLogin: true,
-          accessToken: res.data.data.accessToken,
+          accessToken: res.data.accessToken,
         });
-        setWhichSite('KAKAO');
       });
   };
-
+  /*
   const getGitHubCode = (authorizationCode) => {
     console.log('깃허브에서 받은 코드 : ', authorizationCode);
     axios
@@ -59,7 +68,7 @@ function App() {
         setWhichSite('GITHUB');
       });
   };
-
+*/
   return (
     <div className="App">
       <Router isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />

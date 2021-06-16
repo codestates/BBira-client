@@ -8,15 +8,16 @@ function Profile({ userinfo, setEditModeHandler, dropUserHandler, isLoading }) {
   return (
     <>
       <div className="subNav">
-        <button
-          className="mediumBtn reverse marginR"
-          onClick={setEditModeHandler}
-        >
+        <button className="mediumBtn reverse" onClick={setEditModeHandler}>
           프로필 편집
         </button>
-        <Link to="/mystore">
-          <button className="mediumBtn reverse">상품 관리</button>
-        </Link>
+        {storename ? (
+          <Link to="/mystore" className="marginL">
+            <button className="mediumBtn reverse">상품 관리</button>
+          </Link>
+        ) : (
+          <></>
+        )}
       </div>
       <h1>마이페이지</h1>
       {isLoading ? (
@@ -29,7 +30,7 @@ function Profile({ userinfo, setEditModeHandler, dropUserHandler, isLoading }) {
           <div className="tag">email</div>
           <div className="data">{email}</div>
 
-          {true ? (
+          {storename ? (
             <>
               <div className="tag">store name</div>
               <div className="data">{storename}</div>
@@ -38,7 +39,7 @@ function Profile({ userinfo, setEditModeHandler, dropUserHandler, isLoading }) {
               <div className="tag">phone</div>
               <div className="data">{phone}</div>
               <div className="tag">tag</div>
-              <div className="data">{tagname}</div>{' '}
+              <div className="data">{tagname}</div>
             </>
           ) : (
             <> </>
