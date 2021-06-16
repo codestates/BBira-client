@@ -10,7 +10,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Item from './Item';
 
-function StoreCard({ storeInfo }) {
+function StoreCard({ storeInfo, setStore }) {
   const { shop, tags, items } = storeInfo;
   const { storename, phone, id } = shop;
   let count = 0;
