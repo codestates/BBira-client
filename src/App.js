@@ -9,12 +9,22 @@ function App() {
     isLogin: false,
     accessToken: '',
   });
+  const [whichSite, setWhichSite] = useState('');
 
   useEffect(() => {
-    const url = new URL(window.location.href);
-    const authorizationCode = url.searchParams.get('code');
-    if (authorizationCode) {
-      getKakaoCode(authorizationCode);
+    console.log(whichSite);
+    if (whichSite === 'KAKAO') {
+      const url = new URL(window.location.href);
+      const authorizationCode = url.searchParams.get('code');
+      if (authorizationCode) {
+        getGitHubCode(authorizationCode);
+      }
+    } else {
+      const url = new URL(window.location.href);
+      const authorizationCode = url.searchParams.get('code');
+      if (authorizationCode) {
+        getKakaoCode(authorizationCode);
+      }
     }
   }, []);
 
@@ -25,11 +35,28 @@ function App() {
         authorizationCode,
       })
       .then((res) => {
-        console.log('응답!!!!!', res.data);
+        console.log('응답11111', res.data);
         setLoggedIn({
           isLogin: true,
           accessToken: res.data.data.accessToken,
         });
+        setWhichSite('KAKAO');
+      });
+  };
+
+  const getGitHubCode = (authorizationCode) => {
+    console.log('깃허브에서 받은 코드 : ', authorizationCode);
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/githublogin`, {
+        authorizationCode,
+      })
+      .then((res) => {
+        console.log('응답22222', res.data);
+        setLoggedIn({
+          isLogin: true,
+          accessToken: res.data.data.accessToken,
+        });
+        setWhichSite('GITHUB');
       });
   };
 
