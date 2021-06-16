@@ -48,7 +48,6 @@ function Edititem({ chosenId, isLoggedIn, wholeData }) {
   fd.append('itemname', Data.itemname);
   fd.append('itemdesc', Data.itemdesc);
   fd.append('itemprice', Data.itemprice);
-  fd.append('itemphoto', Data.itemphoto);
   fd.append('id', Data.id);
 
   const editRequestHandler = async (e) => {
