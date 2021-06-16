@@ -10,7 +10,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Item from './Item';
 
-function StoreCard({ storeInfo }) {
+function StoreCard({ storeInfo, setStore }) {
   const { shop, tags, items } = storeInfo;
   const { storename, phone, id } = shop;
   let count = 0;
@@ -38,7 +38,7 @@ function StoreCard({ storeInfo }) {
 
   return (
     <div className="storeCard container bgLightGray">
-      <div className="storeInfo">
+      <div className="storeInfo" onClick={setStore(shop.id)}>
         <span className="tagContainer">
           {tags.map((tag) => {
             return (
@@ -50,7 +50,9 @@ function StoreCard({ storeInfo }) {
         </span>
 
         <Link to="store/">
-          <h2 className="storename">{storename}</h2>
+          <h2 className="storename" onClick>
+            {storename}
+          </h2>
         </Link>
         <span className="phone">
           <FontAwesomeIcon icon={faPhoneAlt} className="phoneIcon" />

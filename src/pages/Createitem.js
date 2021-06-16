@@ -57,14 +57,6 @@ function Create({ isLoggedIn, setLoggedIn }) {
       return;
     }
     e.preventDefault();
-    // FormData
-
-    let fd = new FormData();
-
-    fd.append('itemname', inputs.itemname);
-    fd.append('itemprice', inputs.itemprice);
-    fd.append('itemdesc', inputs.itemdesc);
-    fd.append('itemphoto', inputs.itemphoto);
 
     //form-data
 

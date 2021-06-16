@@ -119,7 +119,7 @@ function Edititem({ chosenId, isLoggedIn, wholeData }) {
               onChange={inputHandler}
             />
             <button
-              className="mediumBtn createBtn"
+              className="mediumBtn createBtn submitBtn"
               onClick={editRequestHandler}
             >
               Edit
