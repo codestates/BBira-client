@@ -45,14 +45,30 @@ function App() {
         authorizationCode,
       })
       .then((res) => {
-        console.log('응답!!!!!', res.data);
+        console.log('응답11111', res.data);
         setLoggedIn({
           isLogin: true,
           accessToken: res.data.accessToken,
         });
       });
   };
-
+  /*
+  const getGitHubCode = (authorizationCode) => {
+    console.log('깃허브에서 받은 코드 : ', authorizationCode);
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/githublogin`, {
+        authorizationCode,
+      })
+      .then((res) => {
+        console.log('응답22222', res.data);
+        setLoggedIn({
+          isLogin: true,
+          accessToken: res.data.data.accessToken,
+        });
+        setWhichSite('GITHUB');
+      });
+  };
+*/
   return (
     <div className="App">
       <Router isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />

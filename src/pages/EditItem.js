@@ -46,21 +46,23 @@ function Edititem({ chosenId, isLoggedIn, wholeData }) {
   //   id: '',
   // });
 
+  const fd = new FormData();
+
+  fd.append('itemname', Data.itemname);
+  fd.append('itemdesc', Data.itemdesc);
+  fd.append('itemprice', Data.itemprice);
+  fd.append('itemphoto', Data.itemphoto);
+  fd.append('id', Data.id);
+
   const editRequestHandler = async (e) => {
     //axios
     await axios
       .post(
         `http://ec2-13-209-69-167.ap-northeast-2.compute.amazonaws.com/fixiteminfo`,
-        {
-          itemname: Data.itemname,
-          itemprice: Data.itemprice,
-          itemdesc: Data.itemdesc,
-          itemphoto: Data.itemphoto,
-          id: Data.id,
-        },
+        fd,
         {
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${isLoggedIn.accessToken}`,
           },
           withCredentials: true,
@@ -76,10 +78,10 @@ function Edititem({ chosenId, isLoggedIn, wholeData }) {
 
   return (
     <div className="container center">
+      <h1>상품 수정</h1>
       {isDone ? (
         <div>
-          <h1>상품 수정</h1>
-          <div className="storeManagement userInfo">
+          <form className="storeManagement userInfo">
             <div className="itemname">itemname</div>
             <input
               className="inputname"
@@ -122,7 +124,7 @@ function Edititem({ chosenId, isLoggedIn, wholeData }) {
             >
               Edit
             </button>
-          </div>
+          </form>
         </div>
       ) : (
         <div>

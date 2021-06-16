@@ -66,6 +66,15 @@ function Create({ isLoggedIn, setLoggedIn }) {
     fd.append('itemdesc', inputs.itemdesc);
     fd.append('itemphoto', inputs.itemphoto);
 
+    //form-data
+
+    const fd = new FormData();
+
+    fd.append('itemname', inputs.itemname);
+    fd.append('itemprice', inputs.itemprice);
+    fd.append('itemdesc', inputs.itemdesc);
+    fd.append('itemphoto', inputs.itemphoto);
+
     //axios
     await axios
       .post(`${process.env.REACT_APP_API_URL}/itemregister`, fd, {
