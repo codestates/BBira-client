@@ -1,16 +1,20 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Profile from '../component/Profile';
 import EditProfile from '../component/EditProfile';
+import axios from 'axios';
 
-function Mypage() {
+function Mypage({ isLoggedIn, setLoggedIn }) {
+  const history = useHistory();
+  const [isLoading, setLoading] = useState(true);
   const [isEditMode, setEditMode] = useState(false);
   const [userinfo, setUserinfo] = useState({
-    name: '',
+    nickname: '',
     email: '',
     storename: '',
     address: '',
     phone: '',
+    tagname: '',
   });
 
   const setEditModeHandler = () => {
@@ -21,33 +25,73 @@ function Mypage() {
     }
   };
 
-  useEffect(() => {
+  const dropUserHandler = () => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/userinfo`, {
-        'Content-Type': 'application/json',
+      .get(`${process.env.REACT_APP_API_URL}/dropuser`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${isLoggedIn.accessToken}`,
+        },
         withCredentials: true,
       })
-      .then((response) => {
-        const { name, email, storename, address, phone } = response.data;
+      .then(() => {
+        setLoggedIn({
+          isLogin: false,
+          accessToken: '',
+        });
+        history.push({
+          pathname: '/',
+        });
+      });
+  };
+
+  useEffect(() => {
+    setEditMode(false);
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/userinfo`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${isLoggedIn.accessToken}`,
+        },
+        withCredentials: true,
+      })
+      .then((res) => {
+        const {
+          user: { nickname, email },
+          store: { storename, address, phone },
+          tags: tagname,
+        } = res.data.data;
+        console.log(res.data);
+
         setUserinfo({
-          name,
+          nickname,
           email,
           storename,
           address,
           phone,
+          tagname,
         });
+      })
+      .then(() => {
+        setLoading(false);
       });
-  });
+  }, [isLoggedIn]);
 
   return (
     <div className="mypage container center">
       {isEditMode ? (
         <EditProfile
+          isLoggedIn={isLoggedIn}
           userinfo={userinfo}
           setEditModeHandler={setEditModeHandler}
         />
       ) : (
-        <Profile userinfo={userinfo} setEditModeHandler={setEditModeHandler} />
+        <Profile
+          userinfo={userinfo}
+          setEditModeHandler={setEditModeHandler}
+          dropUserHandler={dropUserHandler}
+          isLoading={isLoading}
+        />
       )}
     </div>
   );

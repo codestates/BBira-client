@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './toggle.css';
 import { useHistory } from 'react-router-dom';
 
 function Signup(props) {
+  const history = useHistory();
   const [Owner, setOwner] = useState(false);
+  const [error, setError] = useState(null);
   const [inputs, setInputs] = useState({
     email: '',
     password: '',
@@ -12,8 +14,8 @@ function Signup(props) {
     storename: '',
     phone: '',
     address: '',
+    tagname: '',
   });
-  const history = useHistory();
 
   function isOwner(e) {
     if (Owner) {
@@ -23,28 +25,36 @@ function Signup(props) {
     }
   }
 
+  useEffect(() => {
+    setError(null);
+    console.log('유즈이펙트');
+  }, []);
+
   const inputHandler = (e) => {
     e.target.classList.remove('err');
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value,
     });
-    console.log(inputs);
   };
 
   const signupRequestHandler = async (e) => {
     //기본 회원가입시
+    e.preventDefault();
+
     if (Owner === false) {
-      if (!inputs.email) {
-        e.target.form[0].classList.add('err');
+      if (!inputs.email || !inputs.password || !inputs.nickname) {
+        if (!inputs.email) {
+          e.target.form[0].classList.add('err');
+        }
+        if (!inputs.password) {
+          e.target.form[1].classList.add('err');
+        }
+        if (!inputs.nickname) {
+          e.target.form[2].classList.add('err');
+        }
+        return;
       }
-      if (!inputs.password) {
-        e.target.form[1].classList.add('err');
-      }
-      if (!inputs.nickname) {
-        e.target.form[2].classList.add('err');
-      }
-      e.preventDefault();
 
       await axios
         .post(
@@ -63,27 +73,41 @@ function Signup(props) {
           console.log(response);
           history.push({ pathname: '/signin' });
         })
-        .catch((err) => console.log(err));
-    } /* 상점 회원가입시 */ else {
-      if (!inputs.email) {
-        e.target.form[0].classList.add('err');
+        .catch((err) => setError(err));
+    } else {
+      /* 상점 회원가입시 */
+      if (
+        !inputs.email ||
+        !inputs.password ||
+        !inputs.nickname ||
+        !inputs.phone ||
+        !inputs.address ||
+        !inputs.tagname
+      ) {
+        if (!inputs.email) {
+          e.target.form[0].classList.add('err');
+        }
+        if (!inputs.password) {
+          e.target.form[1].classList.add('err');
+        }
+        if (!inputs.nickname) {
+          e.target.form[2].classList.add('err');
+        }
+        if (!inputs.storename) {
+          e.target.form[4].classList.add('err');
+        }
+        if (!inputs.phone) {
+          e.target.form[5].classList.add('err');
+        }
+        if (!inputs.address) {
+          e.target.form[6].classList.add('err');
+        }
+        if (!inputs.tagname) {
+          e.target.form[7].classList.add('err');
+        }
+        e.preventDefault();
+        return;
       }
-      if (!inputs.password) {
-        e.target.form[1].classList.add('err');
-      }
-      if (!inputs.nickname) {
-        e.target.form[2].classList.add('err');
-      }
-      if (!inputs.storename) {
-        e.target.form[4].classList.add('err');
-      }
-      if (!inputs.phone) {
-        e.target.form[5].classList.add('err');
-      }
-      if (!inputs.address) {
-        e.target.form[6].classList.add('err');
-      }
-      e.preventDefault();
 
       await axios
         .post(
@@ -95,6 +119,7 @@ function Signup(props) {
             storename: inputs.storename,
             phone: inputs.phone,
             address: inputs.address,
+            tagname: inputs.tagname,
           },
           {
             'Content-Type': 'application/json',
@@ -105,14 +130,14 @@ function Signup(props) {
           console.log(response);
           history.push({ pathname: '/signin' });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => setError(err));
     }
   };
 
   return (
     <div className="signIn container center">
       <h1>회원 가입</h1>
-      <form>
+      <form className="signInForm">
         <div className="inputGroup">
           <label htmlFor="email">Email</label>
           <input
@@ -135,16 +160,11 @@ function Signup(props) {
 
         <div className="inputGroup">
           <label htmlFor="nickname">nickname</label>
-          <input
-            name="nickname"
-            type="nickname"
-            onChange={inputHandler}
-            required
-          ></input>
+          <input name="nickname" onChange={inputHandler} required></input>
         </div>
 
-        <div>
-          I`m The Owner
+        <div className="isOwner">
+          <span>I`m The Owner</span>
           <label className="switch">
             <input className="toggleBtn" type="checkbox" onClick={isOwner} />
             <span className="slider round"></span>
@@ -154,12 +174,7 @@ function Signup(props) {
           <div>
             <div className="inputGroup">
               <label htmlFor="storename">storename</label>
-              <input
-                name="storename"
-                type="storename"
-                onChange={inputHandler}
-                required
-              ></input>
+              <input name="storename" onChange={inputHandler} required></input>
             </div>
             <div className="inputGroup">
               <label htmlFor="phone">phone</label>
@@ -172,10 +187,15 @@ function Signup(props) {
             </div>
             <div className="inputGroup">
               <label htmlFor="address">address</label>
+              <input name="address" onChange={inputHandler} required></input>
+            </div>
+            <div className="inputGroup">
+              <label htmlFor="tagname">tag</label>
               <input
-                name="address"
-                type="address"
+                name="tagname"
+                type="text"
                 onChange={inputHandler}
+                placeholder="태그를 쉼표(,)로 띄어쓰기 없이 구분해 입력해 주세요."
                 required
               ></input>
             </div>
@@ -183,7 +203,8 @@ function Signup(props) {
         ) : (
           <div></div>
         )}
-        <button className="signup" onClick={signupRequestHandler}>
+        {error ? <p className="err">이미 가입된 이메일 입니다.</p> : <></>}
+        <button className="mediumBtn submitBtn" onClick={signupRequestHandler}>
           Sign up
         </button>
       </form>

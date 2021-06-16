@@ -1,26 +1,77 @@
 import React, { useState, useEffect } from 'react';
-import './Style.css';
 import Router from './component/Router';
 import axios from 'axios';
+import './Style.css';
 require('dotenv').config();
 
 function App() {
-  const [isLoading, setLoading] = useState(false);
-  const [isLoggedIn, setLoggedIn] = useState(true);
-
-  useEffect(() => {
-    // axios로 데이터를 정상적으로 받아왔다. ->
+  const [isLoggedIn, setLoggedIn] = useState({
+    isLogin: false,
+    accessToken: '',
   });
 
+  useEffect(() => {
+    const url = new URL(window.location.href);
+
+    const authorizationCode = url.searchParams.get('code');
+    if (authorizationCode) {
+      getKakaoCode(authorizationCode);
+    }
+
+    refreshTokenRequest();
+    // console.log(document.cookie);
+    // // if () {
+    // // }
+  }, []);
+
+  const refreshTokenRequest = () => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/refreshtokenrequest`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res);
+        setLoggedIn({
+          isLogin: true,
+          accessToken: res.data.accessToken,
+        }).catch((err) => console.log(err));
+      });
+  };
+
+  const getKakaoCode = (authorizationCode) => {
+    console.log('카카오에서 받은 코드 : ', authorizationCode);
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/kakaologin`, {
+        authorizationCode,
+      })
+      .then((res) => {
+        console.log('응답11111', res.data);
+        setLoggedIn({
+          isLogin: true,
+          accessToken: res.data.accessToken,
+        });
+      });
+  };
+  /*
+  const getGitHubCode = (authorizationCode) => {
+    console.log('깃허브에서 받은 코드 : ', authorizationCode);
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/githublogin`, {
+        authorizationCode,
+      })
+      .then((res) => {
+        console.log('응답22222', res.data);
+        setLoggedIn({
+          isLogin: true,
+          accessToken: res.data.data.accessToken,
+        });
+        setWhichSite('GITHUB');
+      });
+  };
+*/
   return (
     <div className="App">
-      {isLoading ? (
-        <h1 className="loader">로딩중...</h1>
-      ) : (
-        <>
-          <Router isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
-        </>
-      )}
+      <Router isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
     </div>
   );
 }
