@@ -67,11 +67,11 @@ function Signin({ setLoggedIn }) {
       )
       .then((res) => {
         // 로그인 핸들러
-        console.log(res.headers);
         setLoggedIn({
           isLogin: true,
           accessToken: res.data.data.accessToken,
         });
+
         history.push({
           pathname: '/',
         });

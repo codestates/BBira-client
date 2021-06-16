@@ -17,6 +17,11 @@ function App() {
     if (authorizationCode) {
       getKakaoCode(authorizationCode);
     }
+
+    refreshTokenRequest();
+    // console.log(document.cookie);
+    // // if () {
+    // // }
   }, []);
 
   const refreshTokenRequest = () => {
@@ -25,15 +30,11 @@ function App() {
         withCredentials: true,
       })
       .then((res) => {
-        // if (res.data.message !== 'ok') {
-        //   const message =
-        //     'refresh token이 만료되어 불러올 수 없습니다. 다시 로그인 해주시기 바랍니다.';
-        //   return setLoggedIn({isLogin: false, accessToken: ''})
-        // }
+        console.log(res);
         setLoggedIn({
           isLogin: true,
           accessToken: res.data.accessToken,
-        });
+        }).catch((err) => console.log(err));
       });
   };
 
