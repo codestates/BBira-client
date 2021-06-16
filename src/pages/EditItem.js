@@ -9,7 +9,6 @@ function Edititem({ chosenId, isLoggedIn, wholeData }) {
     itemname: '',
     itemprice: '',
     itemdesc: '',
-    itemphoto: '',
     id: '',
   });
   const history = useHistory();
@@ -20,7 +19,6 @@ function Edititem({ chosenId, isLoggedIn, wholeData }) {
         setData({
           itemname: wholeData[n].itemname,
           itemprice: wholeData[n].itemprice,
-          itemphoto: wholeData[n].itemphoto,
           itemdesc: wholeData[n].itemdesc,
           id: wholeData[n].id,
         });
@@ -30,21 +28,11 @@ function Edititem({ chosenId, isLoggedIn, wholeData }) {
   }, []);
 
   const inputHandler = (e) => {
-    if (e.target.name === 'itemphoto') {
-      let file = e.target.files[0];
-      setData({
-        ...Data,
-        itemphoto: file,
-      });
-    } else {
-      e.target.classList.remove('err');
-      setData({
-        ...Data,
-        [e.target.name]: e.target.value,
-      });
-    }
-
-    console.log(Data);
+    e.target.classList.remove('err');
+    setData({
+      ...Data,
+      [e.target.name]: e.target.value,
+    });
   };
 
   // const [inputs, setInputs] = useState({
