@@ -1,6 +1,8 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import StoreCard from '../component/StoreCard';
+import axios from 'axios';
+import AllStore from './AllStore';
+import Store from './Store';
+import { Route } from 'react-router-dom';
 
 function Home() {
   const [isLoading, setLoading] = useState(true);
@@ -23,29 +25,22 @@ function Home() {
   }, []);
 
   return (
-    <div>
-      {isLoading ? (
-        <div className="loadimg">
-          <div className="bouncybox">
-            <div className="bouncy"></div>
+    <>
+      <div>
+        <Route path="/store/:id">
+          <Store />
+        </Route>
+        {isLoading ? (
+          <div className="loadimg">
+            <div className="bouncybox">
+              <div className="bouncy"></div>
+            </div>
           </div>
-        </div>
-      ) : (
-        <>
-          {allStoreInfo.map((storeInfo) => {
-            return (
-              <>
-                <StoreCard
-                  key={`storeCard${storeInfo.shop.id}`}
-                  storeInfo={storeInfo}
-                  className="center"
-                />
-              </>
-            );
-          })}
-        </>
-      )}
-    </div>
+        ) : (
+          <AllStore allStoreInfo={allStoreInfo} />
+        )}
+      </div>
+    </>
   );
 }
 

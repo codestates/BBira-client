@@ -30,11 +30,20 @@ function Edititem({ chosenId, isLoggedIn, wholeData }) {
   }, []);
 
   const inputHandler = (e) => {
-    e.target.classList.remove('err');
-    setData({
-      ...Data,
-      [e.target.name]: e.target.value,
-    });
+    if (e.target.name === 'itemphoto') {
+      let file = e.target.files[0];
+      setData({
+        ...Data,
+        itemphoto: file,
+      });
+    } else {
+      e.target.classList.remove('err');
+      setData({
+        ...Data,
+        [e.target.name]: e.target.value,
+      });
+    }
+
     console.log(Data);
   };
 

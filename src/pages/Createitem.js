@@ -22,17 +22,21 @@ function Create({ isLoggedIn, setLoggedIn }) {
 
   const incodingFile = (e) => {
     e.preventDefault();
-    let reader = new FileReader();
+    // let reader = new FileReader();
     let file = e.target.files[0];
-    if (file) {
-      reader.readAsDataURL(file);
-      reader.onload = (e) => {
-        setInputs({
-          ...inputs,
-          itemphoto: e.target.result,
-        });
-      };
-    }
+    setInputs({
+      ...inputs,
+      itemphoto: file,
+    });
+    // if (file) {
+    //   reader.readAsDataURL(file);
+    //   reader.onload = (e) => {
+    //     setInputs({
+    //       ...inputs,
+    //       itemphoto: e.target.result,
+    //     });
+    //   };
+    // }
   };
 
   const CreateRequestHandler = async (e) => {
@@ -57,14 +61,6 @@ function Create({ isLoggedIn, setLoggedIn }) {
       return;
     }
     e.preventDefault();
-    // FormData
-
-    let fd = new FormData();
-
-    fd.append('itemname', inputs.itemname);
-    fd.append('itemprice', inputs.itemprice);
-    fd.append('itemdesc', inputs.itemdesc);
-    fd.append('itemphoto', inputs.itemphoto);
 
     //form-data
 
@@ -74,6 +70,7 @@ function Create({ isLoggedIn, setLoggedIn }) {
     fd.append('itemprice', inputs.itemprice);
     fd.append('itemdesc', inputs.itemdesc);
     fd.append('itemphoto', inputs.itemphoto);
+    console.log(fd);
 
     //axios
     await axios

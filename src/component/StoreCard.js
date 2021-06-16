@@ -49,7 +49,7 @@ function StoreCard({ storeInfo }) {
           })}
         </span>
 
-        <Link to="store/">
+        <Link to={`store/${id}`}>
           <h2 className="storename">{storename}</h2>
         </Link>
         <span className="phone">
@@ -71,7 +71,7 @@ function StoreCard({ storeInfo }) {
         <div className="slideItemCard">
           <div className={`slideAnimation${id} slideAnimation`}>
             {items.map((item) => {
-              return <Item item={item} isBtn={false} key={`tag${item.id}`} />;
+              return <Item item={item} isBtn={false} key={`item${item.id}`} />;
             })}
           </div>
         </div>
