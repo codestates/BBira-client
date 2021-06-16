@@ -36,38 +36,45 @@ function Create({ isLoggedIn, setLoggedIn }) {
   };
 
   const CreateRequestHandler = async (e) => {
-    if (!inputs.itemname) {
-      e.target.form[0].classList.add('err');
-    }
-    if (!inputs.itemprice) {
-      e.target.form[1].classList.add('err');
-    }
-    if (!inputs.itemdesc) {
-      e.target.form[2].classList.add('err');
-    }
-    if (!inputs.itemphoto) {
-      e.target.form[3].classList.add('err');
+    if (
+      !inputs.itemname ||
+      !inputs.itemprice ||
+      !inputs.itemdesc ||
+      !inputs.itemphoto
+    ) {
+      if (!inputs.itemname) {
+        e.target.form[0].classList.add('err');
+      }
+      if (!inputs.itemprice) {
+        e.target.form[1].classList.add('err');
+      }
+      if (!inputs.itemdesc) {
+        e.target.form[2].classList.add('err');
+      }
+      if (!inputs.itemphoto) {
+        e.target.form[3].classList.add('err');
+      }
+      return;
     }
     e.preventDefault();
+    // FormData
+
+    let fd = new FormData();
+
+    fd.append('itemname', inputs.itemname);
+    fd.append('itemprice', inputs.itemprice);
+    fd.append('itemdesc', inputs.itemdesc);
+    fd.append('itemphoto', inputs.itemphoto);
 
     //axios
     await axios
-      .post(
-        `${process.env.REACT_APP_API_URL}/itemregister`,
-        {
-          itemname: inputs.itemname,
-          itemprice: inputs.itemprice,
-          itemdesc: inputs.itemdesc,
-          itemphoto: inputs.itemphoto,
+      .post(`${process.env.REACT_APP_API_URL}/itemregister`, fd, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${isLoggedIn.accessToken}`,
         },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${isLoggedIn.accessToken}`,
-          },
-          withCredentials: true,
-        }
-      )
+        withCredentials: true,
+      })
       .then(() => {
         history.push({ pathname: '/mystore' });
       })

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithubAlt } from '@fortawesome/free-brands-svg-icons';
+// import { faGithubAlt } from '@fortawesome/free-brands-svg-icons';
 import { faSms } from '@fortawesome/free-solid-svg-icons';
 
 function Signin({ setLoggedIn }) {
@@ -27,10 +27,10 @@ function Signin({ setLoggedIn }) {
     window.location.assign(KAKAO_LOGIN_URL, '카카오 로그인');
   };
 
-  const gitHubLogin = (e) => {
-    e.preventDefault();
-    // window.location.assign(, '깃헙 로그인');
-  };
+  // const gitHubLogin = (e) => {
+  //   e.preventDefault();
+  //   // window.location.assign(, '깃헙 로그인');
+  // };
 
   const inputHandler = (e) => {
     e.target.classList.remove('err');
@@ -123,9 +123,9 @@ function Signin({ setLoggedIn }) {
           <div className="kakao socialBtn" onClick={kakaoLogin}>
             <FontAwesomeIcon icon={faSms} />
           </div>
-          <div className="github socialBtn">
+          {/* <div className="github socialBtn">
             <FontAwesomeIcon icon={faGithubAlt} />
-          </div>
+          </div> */}
         </div>
       </form>
     </div>
